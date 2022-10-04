@@ -24,23 +24,16 @@ body{
 }
 
 header{
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    position:relative;
-    text-align: center;
-    padding-top:1.5em;
-    padding-bottom:2em;
-    background-repeat: no-repeat;
-    height:30em;
+    grid-column:1/6;
+    height:60em;
     margin-top:3em;
-    border-bottom:.5em solid;
 }
 header h1{
+    position:absolute;
+    top:50%;
+    left:25%;
     width:50%;
-    margin:1.5em auto;
-    background-color:yellow;
+    background-color:blue;
 }
 nav{
     position:fixed;
@@ -109,11 +102,9 @@ nav{
 
 
 
-nav + canvas{
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:0;
+canvas{
+    width: 100%;
+    height: 93.5vh;
     background-color:rgba(65, 74, 76,.9);
 }
 main canvas{
@@ -305,19 +296,14 @@ header:before{
 
 /*    opacity:.4;*/
 }
-header h1{
+/* header h1{
     font-size: 90px;
     position:relative;
     text-align:center;
     color:white;
     text-shadow: -1.2px -1.2px 0 #000, 1.2px -1.2px 0 #000, -1.2px 1.2px 0 #000, 1.2px 1.2px 0 #000;
     z-index:1;
-}
-
-h1{
-    /*font-family: 'Staatliches', cursive;
-    text-decoration:underline;*/
-}
+} */
 main section{
     display:grid;
     grid-template-columns:50% 50%;

@@ -242,42 +242,42 @@ function repeatObject(){
 }
 
 
-draw = function(){
-    canvas = document.querySelector('canvas');
-    context = canvas.getContext('2d');
-    width = canvas.width;
-    height = canvas.height;
-    headerHeight= 525;
-    context.clearRect(0, 0, width, height);
-    context.fillStyle ='white';
-    createObjects(30);
-    repeatObject();
-    context.fillStyle ='#343b3d';
-    context.fillRect(0,0,width,525);
-//     canvas.onmousemove = function(evt){
-//         let mouseXY = mousePosition(event);
-//         mouseX = mouseXY.x;
-//         mouseY = mouseXY.y;
-//         starHover = true;
-//     }
-//     if (starHover == true){
-//         for (let m = 0;m < stars.length; m++){
-//             if (mouseX < stars[m].x + 30 && mouseX > stars[m].x - 30 && mouseY < stars[m].y + 30 && mouseY > stars[m].y - 30){
-//                 if (stars[m].size < 3.5){
-//                     stars[m].size += 1;
-//                 }
-//             }
-//         }
-//     }
-//     context.fillStyle ='silver';
-//     createStars(starCount);
-//     repeatStar();
-//     for (let l = 0;l < stars.length;l++)
-//     if (stars[l].size > 1.5){
-//         stars[l].size -= .5;
-//     }
-    window.requestAnimationFrame(draw);
-}
+// draw = function(){
+//     canvas = document.querySelector('canvas');
+//     context = canvas.getContext('2d');
+//     width = canvas.width;
+//     height = canvas.height;
+//     headerHeight= 525;
+//     context.clearRect(0, 0, width, height);
+//     context.fillStyle ='white';
+//     createObjects(30);
+//     repeatObject();
+//     context.fillStyle ='#343b3d';
+//     context.fillRect(0,0,width,525);
+// //     canvas.onmousemove = function(evt){
+// //         let mouseXY = mousePosition(event);
+// //         mouseX = mouseXY.x;
+// //         mouseY = mouseXY.y;
+// //         starHover = true;
+// //     }
+// //     if (starHover == true){
+// //         for (let m = 0;m < stars.length; m++){
+// //             if (mouseX < stars[m].x + 30 && mouseX > stars[m].x - 30 && mouseY < stars[m].y + 30 && mouseY > stars[m].y - 30){
+// //                 if (stars[m].size < 3.5){
+// //                     stars[m].size += 1;
+// //                 }
+// //             }
+// //         }
+// //     }
+// //     context.fillStyle ='silver';
+// //     createStars(starCount);
+// //     repeatStar();
+// //     for (let l = 0;l < stars.length;l++)
+// //     if (stars[l].size > 1.5){
+// //         stars[l].size -= .5;
+// //     }
+//     window.requestAnimationFrame(draw);
+// }
 
 window.addEventListener("scroll", scrollIn , false);
-window.requestAnimationFrame(draw);
+// window.requestAnimationFrame(draw);
