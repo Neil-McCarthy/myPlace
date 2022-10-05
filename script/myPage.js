@@ -1,119 +1,155 @@
-let canvas,width,height,headerHeight,context,draw,mouseX,mouseY,dropList,dropID,main,header,aside,Scroller,opacityChanger,mainImages,mainHover,imageChangeTime,imageOpacity1,imageOpacity2,imageIntervalID;
-let body = document.querySelector("body");
-let mainSections = [];
+let width,height,context,draw,mouseX,mouseY;
 let objects = [];
+let objectCount = 150;
+let hover = false;
+
+Math.random();
+
+function createObjects(numberOfObjects){
+    for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
+        objects.push({
+            x:Math.floor((Math.random() * width) + 1),
+            y:Math.floor((Math.random() * height) + 1),
+            size:2,
+            dx:0,
+            dy:0,
+            direction:0
+        })
+        if (objects[objectNumber].direction == 0){
+            directionGiver(objectNumber);
+        }
+    //     objects[objectNumber].size += .5;
+        objects[objectNumber].x += objects[objectNumber].dx;
+        objects[objectNumber].y += objects[objectNumber].dy;
+        context.beginPath();
+        context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
+        context.shadowColor="white";
+        context.shadowBlur = 20;
+    //     context.filter = 'blur(1px)';
+        context.fill();
+        context.stroke();
+        if ((objects[objectNumber].y > height) || (objects[objectNumber].y < 0) || (objects[objectNumber].x > width) || (objects[objectNumber].x < 0)){
+            objects[objectNumber].y = Math.floor((Math.random() * height*3/4) + height/4);
+            objects[objectNumber].x = Math.floor((Math.random() * width*3/4) + width/4);
+        }
+    }
+}
+
+
+function directionGiver(chosenObject){
+    if (objects[chosenObject].x < width/2){
+        objects[chosenObject].dx = -.1 * Math.floor((Math.random() * 10) + 1);
+    } else{
+        objects[chosenObject].dx = .1 * Math.floor((Math.random() * 10) + 1);
+    }
+    if (objects[chosenObject].y < height/2){
+        objects[chosenObject].dy = -.1 * Math.floor((Math.random() * 10) + 1);
+    } else{
+        objects[chosenObject].dy = .1 * Math.floor((Math.random() * 10) + 1);
+    }
+    objects[chosenObject].direction = 1;
+}
+
+
+// function mousePosition(event){
+//     let rect = headerCanvas.getBoundingClientRect();
+//     if (testcall == 1){
+//         console.log(testcall);
+//     }
+//         return{
+//             x: event.clientX - rect.left,
+//             y: event.clientY - rect.top
+//         }
+// }
+
+
+draw = function(){
+    context = headerCanvas.getContext('2d');
+    width = headerCanvas.width;
+    height = 1000;
+    context.clearRect(0, 0, width, height);
+    // canvas.onmousemove = function(evt){
+    //     let mouseXY = mousePosition(event);
+    //     mouseX = mouseXY.x;
+    //     mouseY = mouseXY.y;
+    //     hover = true;
+    // }
+    // if (hover == true){
+    //     for (let m = 0;m < objects.length; m++){
+    //         if (mouseX < objects[m].x + 30 && mouseX > objects[m].x - 30 && mouseY < objects[m].y + 30 && mouseY > objects[m].y - 30){
+    //             if (objects[m].size < 3.5){
+    //                 objects[m].size += 1;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // header.onmousemove = (event) => {
+    //     mouseX = event.clientX;
+    //     mouseY = event.clientY;
+    //     if (canvasHover == false) {
+    //         console.log('hover');
+    //     }
+    //     canvasHover = true;
+    //     // mouseXY = mousePosition(event)
+    // };
+    // header.addEventListener('mouseleave', () => {
+    //     if (canvasHover == true) {
+    //         console.log('not hover');
+    //     }
+    //     canvasHover = false;
+    // });
+    // for (let m = 0;m < objects.length; m++){
+    //     if (objects[m].size > 2){
+    //         objects[m].size -= .5;
+    //     }
+    //     if (canvasHover == true){
+    //         if (mouseX < objects[m].x + 30 && mouseX > objects[m].x - 30 && mouseY < objects[m].y + 30 && mouseY > objects[m].y - 30){
+    //             console.log(objects[m].x,objects[m].y);
+    //             if (objects[m].size < 3.5){
+    //                 objects[m].size += 1;
+    //             }
+                
+    //         }
+    //     }
+    // }
+    context.fillStyle ='white';
+    createObjects(objectCount);
+    window.requestAnimationFrame(draw);
+}
+
+window.requestAnimationFrame(draw);
+
+
+
+let mouseXY;
+let canvasHover = false;
+let headerHeight,dropList,dropID,main,aside,Scroller,opacityChanger,mainImages,mainHover,imageChangeTime,imageOpacity1,imageOpacity2,imageIntervalID;
+let body = document.querySelector("body");
+let header = document.querySelector("header");
+let headerCanvas = header.getElementsByTagName('canvas')[0];
+let headerHeading = header.getElementsByTagName('div')[0];
+let mainSections = [];
 let imageList = [];
 let imageChanging = false;
 let imageNumber = 0;
 let imageVisibleList = [];
 let sectionCounter = 0;
-let hover = false;
 let imageTracker = 0;
 let asideScroller = 0;
-let stars = [];
-let starCount = 100;
-let starHover = false;
 dropID = 'drop'+0;
 main = document.querySelector("main");
 aside = document.querySelector("aside");
 mainSections = main.getElementsByTagName("section");
 mainImages = main.getElementsByTagName("img");
-let mainNavButtons = document.getElementById("mainNav").getElementsByTagName("a");
-let gameNavSubOptions = document.getElementById("drop2").getElementsByTagName("a");
-for (let mainNavSpecific = 0;mainNavSpecific < mainNavButtons.length;mainNavSpecific++){
-    mainNavButtons[mainNavSpecific].addEventListener("mouseenter", function(){
-        dropList = document.getElementById(dropID).style.display = "none";
-        dropID = 'drop'+mainNavSpecific;
-        dropList = document.getElementById(dropID).style.transition = ".5s";
-        dropList = document.getElementById(dropID).style.display = "block";
-        mainNavButtons[2].onclick = function navClickSpecifics(){
-            localStorage.setItem('game',0);
-        }
-        mainNavButtons[mainNavSpecific].addEventListener("mouseleave", function(){
-            dropList = document.getElementById(dropID).addEventListener("mouseenter", function(){
-                hover = true;
-            });
-            dropList = document.getElementById(dropID).addEventListener("mouseleave", function(){
-                hover = false;
-                dropList = document.getElementById(dropID).style.display = "none";
-
-            });
-            setTimeout(function(){
-                if (hover === false){
-                    dropList = document.getElementById(dropID).style.display = "none";
-            }
-            },.001);
-        });
-    }, false);
-}
-Math.random();
 
 
 
-//STAR FUNCTIONS>>>
-function createStars(numberOfStars){
-    for(let starNumber = 0;starNumber < numberOfStars; starNumber++){
-        stars.push({
-            x:Math.floor((Math.random() * width) + 1),
-            y:Math.floor((Math.random() * headerHeight) + 1),
-            size:Math.floor((Math.random() * 3.5) + 1.5),
-            dx:0,
-            dy:0,
-            direction:0
-        })
-    if (stars[starNumber].direction == 0){
-        directionGiver(starNumber);
-    }
-//     stars[starNumber].size += .5;
-    stars[starNumber].x += stars[starNumber].dx;
-    stars[starNumber].y += stars[starNumber].dy;
-    context.beginPath();
-    context.arc(stars[starNumber].x,stars[starNumber].y,stars[starNumber].size, 0, 2 * Math.PI);
-    context.shadowColor="white";
-    context.shadowBlur = 20;
-//     context.filter = 'blur(1px)';
-    context.fill();
-    context.stroke();
-    }
-}
-function repeatStar(){
-    for(let starChecker = 0;starChecker < stars.length; starChecker++){
-        if ((stars[starChecker].y > headerHeight) || (stars[starChecker].y < 0) || (stars[starChecker].x > width) || (stars[starChecker].x < 0)){
-        stars[starChecker].y = Math.floor((Math.random() * headerHeight*3/4) + headerHeight/4);
-        stars[starChecker].x = Math.floor((Math.random() * width*3/4) + width/6);
-        stars[starChecker].size = 1.5;
-        }
-    }
-}
-
-function directionGiver(chosenStar){
-    if (stars[chosenStar].x < width/2){
-        stars[chosenStar].dx = -.1 * Math.floor((Math.random() * 10) + 1);
-    } else{
-        stars[chosenStar].dx = .1 * Math.floor((Math.random() * 10) + 1);
-    }
-    if (stars[chosenStar].y < headerHeight/2){
-        stars[chosenStar].dy = -.1 * Math.floor((Math.random() * 10) + 1);
-    } else{
-        stars[chosenStar].dy = .1 * Math.floor((Math.random() * 10) + 1);
-    }
-    stars[chosenStar].direction = 1;
-}
-function mousePosition(event){
-    let rect = canvas.getBoundingClientRect();
-        return{
-            x: event.clientX - rect.left,
-            y: event.clientY - rect.top
-        }
-}
-//<<<STAR FUNCTIONS
-
-
-for (let specificGame=0; specificGame < gameNavSubOptions.length; specificGame++){
-    gameNavSubOptions[specificGame].onclick = function afunction(){
-        localStorage.setItem('game',specificGame);
-    }
-}
+// for (let specificGame=0; specificGame < gameNavSubOptions.length; specificGame++){
+//     gameNavSubOptions[specificGame].onclick = function afunction(){
+//         localStorage.setItem('game',specificGame);
+//     }
+// }
 
 function scrollCaller(sectionNo){
     sectionNo.style.transition = '.5s';
@@ -199,85 +235,7 @@ function scrollIn () {
     if (this.scrollY < 1750 && sectionCounter > 3){
         scrollRemover(mainSections[4])
     }
-//     if (this.scrollY > 500){
-//         asideScroller +=.8;
-//         aside.style.marginTop = asideScroller + "em";
-//     }
-//     if (this.scrollY > 1500){
-//         aside.style.marginTop = "87.3em";
-//     }
 }
 
-
-
-
-function createObjects(numberOfObjects){
-    for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
-        objects.push({
-            x:Math.floor((Math.random() * width) + 1),
-            y:Math.floor((Math.random() * height) + 525),
-            size:Math.floor((Math.random() * 30) + 20),
-            dy:1 * (Math.round(Math.random()) ? 1 : -1)
-        }
-    )
-//     objects[objectNumber].dy = 1;
-    objects[objectNumber].y += objects[objectNumber].dy;
-    context.beginPath();
-    context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
-    context.fill();
-    context.stroke();
-    }
-}
-
-function repeatObject(){
-    for(let objectChecker = 0;objectChecker < objects.length; objectChecker++){
-        if (objects[objectChecker].y > height + objects[objectChecker].size){
-            objects[objectChecker].dy *= -1;
-            objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-        } else if (objects[objectChecker].y + objects[objectChecker].size < 525){
-            objects[objectChecker].dy *= -1;
-            objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-        }
-    }
-}
-
-
-// draw = function(){
-//     canvas = document.querySelector('canvas');
-//     context = canvas.getContext('2d');
-//     width = canvas.width;
-//     height = canvas.height;
-//     headerHeight= 525;
-//     context.clearRect(0, 0, width, height);
-//     context.fillStyle ='white';
-//     createObjects(30);
-//     repeatObject();
-//     context.fillStyle ='#343b3d';
-//     context.fillRect(0,0,width,525);
-// //     canvas.onmousemove = function(evt){
-// //         let mouseXY = mousePosition(event);
-// //         mouseX = mouseXY.x;
-// //         mouseY = mouseXY.y;
-// //         starHover = true;
-// //     }
-// //     if (starHover == true){
-// //         for (let m = 0;m < stars.length; m++){
-// //             if (mouseX < stars[m].x + 30 && mouseX > stars[m].x - 30 && mouseY < stars[m].y + 30 && mouseY > stars[m].y - 30){
-// //                 if (stars[m].size < 3.5){
-// //                     stars[m].size += 1;
-// //                 }
-// //             }
-// //         }
-// //     }
-// //     context.fillStyle ='silver';
-// //     createStars(starCount);
-// //     repeatStar();
-// //     for (let l = 0;l < stars.length;l++)
-// //     if (stars[l].size > 1.5){
-// //         stars[l].size -= .5;
-// //     }
-//     window.requestAnimationFrame(draw);
-// }
 
 window.addEventListener("scroll", scrollIn , false);
-// window.requestAnimationFrame(draw);

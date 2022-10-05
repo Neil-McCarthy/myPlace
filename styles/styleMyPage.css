@@ -3,6 +3,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Anton&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Aldrich&family=Press+Start+2P&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Press Start 2P';
+@import 'https://fonts.googleapis.com/css2?family=Lobster&display=swap';
 * {
     margin: 0;
     padding: 0;
@@ -10,9 +11,7 @@
 html{
     scroll-behavior: smooth;
 }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+
 body{
     display:grid;
     text-align:center;
@@ -28,12 +27,33 @@ header{
     height:60em;
     margin-top:3em;
 }
-header h1{
+header div{
     position:absolute;
-    top:50%;
+    top:30%;
     left:25%;
     width:50%;
-    background-color:blue;
+    background-color:yellow;
+    padding:2em;
+    border-radius:1em 1em 1em 1em;
+    box-shadow:-.2em -.2em .5em;
+    transition:.9s;
+    text-align: end;
+    opacity:.6;
+}
+header div:hover h1{
+    width:0%;
+}
+header div:hover h1 + h1{
+    width: 100%;
+}
+header div h1{
+    font-size: 5em;
+    width: 100%;
+    transition:.9s;
+    font-family: 'Lobster';
+}
+header div h1 + h1{
+    width: 0%;
 }
 nav{
     position:fixed;
@@ -43,7 +63,7 @@ nav{
     left:0;
     display:grid;
     text-align:center;
-    grid-template-columns:repeat(1, 1fr);
+    grid-template-columns:repeat(4, 1fr);
     grid-auto-rows:auto;
     background-color: whitesmoke;
     background-image: linear-gradient(to right, silver , whitesmoke);
@@ -56,10 +76,10 @@ nav{
     grid-column-end: 2;
     display:grid;
     text-align:center;
-    grid-template-columns:repeat(10, 1fr);
+    grid-template-columns:repeat(5, 1fr);
 }
-#mainNav li:nth-child(4){
-    grid-column-start: 10;
+/* #mainNav li:nth-child(4){
+    grid-column-start: 6;
 }
 #mainNav li:nth-child(3){
     grid-column-start: 9;
@@ -93,7 +113,7 @@ nav{
     grid-column-start: 7;
     display:none;
     transition:.5s;
-}
+} */ 
 
 /*#mainNav li:nth-child(1):hover ~ #dropDown li:nth-child(1){
     display:block;
@@ -104,8 +124,9 @@ nav{
 
 canvas{
     width: 100%;
-    height: 93.5vh;
-    background-color:rgba(65, 74, 76,.9);
+    height: 97%;
+    background-color:black;
+    z-index: 1;
 }
 main canvas{
     background-color:black;
@@ -396,9 +417,15 @@ main img{
 }
 #mainNav a{
     font-size:120%;
-/*    padding:.7em 1em;*/
-/*    background-color:#e0c9ab;*/
     font-family: 'Staatliches', cursive;
+    display:inline;
+    background-color:silver;
+    height:2.5em;
+    line-height:2.9em;
+    transition:.5s;
+}
+#mainNav a:hover{
+    background-color:whitesmoke;
     transition:.5s;
 }
 a{
@@ -410,24 +437,13 @@ aside p{
 }
 
 
-#mainNav a:hover{
-    background-color:whitesmoke;
-    transition:.5s;
-}
+
 ul {
-    text-align:right;
+    /* text-align:right; */
     list-style: none;
     height:100%;
 }
-#mainNav a{
-    display:inline;
-    background-color:silver;
-    height:2.5em;
-    line-height:2.9em;
-    transition:.5s;
-    margin:0 .5em;
-    /*padding:1.25em;*/
-}
+
 #dropDown{
     width:100%;
     grid-column-start: 1;
@@ -442,9 +458,7 @@ ul {
 }
 #dropDown li{
     display:block;
-    width:100%;
     background-color:white;
-    text-align:left;
     transition:.5s;
 }
 #dropDown li:hover{
