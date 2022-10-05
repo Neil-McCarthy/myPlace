@@ -239,3 +239,4 @@ function scrollIn () {
 
 
 window.addEventListener("scroll", scrollIn , false);
+// window.requestAnimationFrame(draw);
