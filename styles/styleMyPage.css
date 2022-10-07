@@ -304,6 +304,11 @@ footer{
 #gamesPage footer{
     grid-row:6/7;
 }
+footer li{
+    display: inline-block;
+    padding:0;
+    height:100%;
+}
 footer img{
     width:2em;
 }

@@ -169,37 +169,98 @@ function scrollRemover(sectionNo){
 
 
 
-function imageChanger(imageNumber){
-    imageList[imageNumber].classList.remove('visible');
-    if (imageNumber < imageList.length - 1){
-        imageList[imageNumber+1].classList.add('visible');
-    } else{
-        imageList[0].classList.add('visible');
-    }
-    imageNumber += 1;
-    if (imageNumber > imageList.length -1){
-        imageNumber = 0;
-    }
+function imageChanger(specificSection){
+        // imageChanger(imageNumber);
+        //imageList[0].src = imageList[1].src
+        imageChangeTime = setTimeout(function(){
+            if (imageList[0].classList.contains('visible')) {
+                imageList[0].classList.remove('visible');
+                imageList[1].classList.add('visible');
+            } else {
+                imageList[1].classList.remove('visible');
+                imageList[0].classList.add('visible');
+            }
+            imageChangerRepeat(specificSection)
+        },4000);
+        
 
-    imageChangeTime = setTimeout(function(){
-            imageChanger(imageNumber);
-        },5000);
+    // imageList[imageNumber].classList.remove('visible');
+    // if (imageNumber < imageList.length - 1){
+    //     imageList[imageNumber+1].classList.add('visible');
+    // } else{
+    //     imageList[0].classList.add('visible');
+    // }
+    // imageNumber += 1;
+    // if (imageNumber > imageList.length -1){
+    //     imageNumber = 0;
+    // }
+
+    // imageChangeTime = setTimeout(function(){
+    //         imageChanger(imageNumber);
+    //     },5000);
 }
-mainHover = main.addEventListener("mouseover", function(){
+
+
+
+let changerIdle = true;
+let visibleImage = 0; 
+let nextImage = 1;
+main.addEventListener("mouseenter", function(){
     for (let n = 1;n < mainSections.length;n++){
-        opacityChanger = mainSections[n].addEventListener("mouseover", function(){
+        mainSections[n].addEventListener("mouseover", function(){
             opacityChanger = mainSections[n].style.opacity = '1';
         });
-        opacityChanger = mainSections[n].addEventListener("mouseenter", function(){
+        mainSections[n].addEventListener("mouseenter", function(){
+            imageChanging = true;
             imageList = mainSections[n].getElementsByTagName("img");
-            if (imageChanging === false){
+            function imageChanger(specificSection, visibleImage, nextImage){
+                // imageChanger(imageNumber);
+                //imageList[0].src = imageList[1].src
                 imageChangeTime = setTimeout(function(){
-                        imageChanger(imageNumber);
-                    },2000);
-                    imageChanging = true;
+                    imageList[visibleImage].classList.remove('visible');
+                    imageList[nextImage].classList.add('visible');
+                    for (let imageCheck = 0;imageCheck < imageList.length;imageCheck++) {
+                        if (imageList[imageCheck].classList.contains('visible')){
+                            visibleImage = imageCheck;
+                            if (visibleImage + 1 == imageList.length){
+                                nextImage = 0;
+                            } else{
+                                nextImage = visibleImage + 1;
+                            }
+                        }
+                    }
+                    imageChangerRepeat(specificSection, visibleImage, nextImage);
+                },4000);
+                
+        
+            // imageList[imageNumber].classList.remove('visible');
+            // if (imageNumber < imageList.length - 1){
+            //     imageList[imageNumber+1].classList.add('visible');
+            // } else{
+            //     imageList[0].classList.add('visible');
+            // }
+            // imageNumber += 1;
+            // if (imageNumber > imageList.length -1){
+            //     imageNumber = 0;
+            // }
+        
+            // imageChangeTime = setTimeout(function(){
+            //         imageChanger(imageNumber);
+            //     },5000);
+        }
+            function imageChangerRepeat(sectionToRepeat, visibleImage, nextImage) {
+                if (sectionToRepeat ==  n && imageChanging) {
+                    imageChanger(sectionToRepeat, visibleImage, nextImage);                    
+                }
+            }
+            if (imageChanging && changerIdle){
+                imageChanger(n, visibleImage, nextImage);
+                changerIdle = false;
             }
         });
-        opacityChanger = mainSections[n].addEventListener("mouseleave", function(){
+        mainSections[n].addEventListener("mouseleave", function(){
+            console.log('leave');
+            changerIdle = true;
             opacityChanger = mainSections[n].style.opacity = '0.8';
             imageNumber = 0;
             clearTimeout(imageChangeTime);
@@ -207,6 +268,9 @@ mainHover = main.addEventListener("mouseover", function(){
 //             imageList[0].classList.remove('visible');
         });
     }
+});
+main.addEventListener("mouseleave", function(){
+    imageChanging = false;
 });
 
 
