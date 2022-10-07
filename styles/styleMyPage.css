@@ -4,6 +4,8 @@
 @import 'https://fonts.googleapis.com/css2?family=Aldrich&family=Press+Start+2P&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Press Start 2P';
 @import 'https://fonts.googleapis.com/css2?family=Lobster&display=swap';
+
+/* GENERAL>>> */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +13,12 @@
 html{
     scroll-behavior: smooth;
 }
-
+a{
+    display:block;
+    text-decoration:none;
+    color:black;
+}
+/* <<<GENERAL */
 body{
     display:grid;
     text-align:center;
@@ -70,9 +77,6 @@ nav{
     height:100%;
 }
 #mainNav a{
-    display:block;
-    text-decoration:none;
-    color:black;
     font-size:120%;
     font-family: 'Staatliches', cursive;
     background-color:silver;
