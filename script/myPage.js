@@ -211,28 +211,28 @@ mainHover = main.addEventListener("mouseover", function(){
 
 
 function scrollIn () {
-    if (this.scrollY > 250 && sectionCounter < 1){
+    if (this.scrollY > 750 && sectionCounter < 1){
         scrollCaller(mainSections[1])
     }
-    if (this.scrollY < 250 && sectionCounter > 0){
+    if (this.scrollY < 750 && sectionCounter > 0){
         scrollRemover(mainSections[1])
     }
-    if (this.scrollY > 750 && sectionCounter < 2){
+    if (this.scrollY > 1250 && sectionCounter < 2){
         scrollCaller(mainSections[2])
     }
-    if (this.scrollY < 750 && sectionCounter > 1){
+    if (this.scrollY < 1250 && sectionCounter > 1){
         scrollRemover(mainSections[2])
     }
-    if (this.scrollY > 1250 && sectionCounter < 3){
+    if (this.scrollY > 1750 && sectionCounter < 3){
         scrollCaller(mainSections[3])
     }
-    if (this.scrollY < 1250 && sectionCounter > 2){
+    if (this.scrollY < 1750 && sectionCounter > 2){
         scrollRemover(mainSections[3])
     }
-    if (this.scrollY > 1750 && sectionCounter < 4){
+    if (this.scrollY > 2250 && sectionCounter < 4){
         scrollCaller(mainSections[4])
     }
-    if (this.scrollY < 1750 && sectionCounter > 3){
+    if (this.scrollY < 2250 && sectionCounter > 3){
         scrollRemover(mainSections[4])
     }
 }
