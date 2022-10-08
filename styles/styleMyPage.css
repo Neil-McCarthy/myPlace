@@ -242,10 +242,11 @@ main section img{
 /* ASIDE>>> */
 /* GENERAL>>> */
 aside{
-    grid-column: 5/6;
-    grid-row: 2/3;
+    grid-column:1/6;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
     padding-bottom: 2em;
-    margin-right:2.5em;
+    margin:0em 2.5em;
     background-color:silver;
     opacity:.8;
     z-index:1;
@@ -268,13 +269,14 @@ aside img{
     transition:.3s;
 }
 /* <<<GENERAL */
+/* HOMEPAGE SPECIFIC>>> */
+#homePage aside{
+    grid-row:4/5; 
+}
+/* <<<HOMEPAGE SPECIFIC */
 /* GAMESPAGE SPECIFIC>>> */
-aside{
+#gamesPage aside{
     grid-row:5/6;
-    grid-column:1/6;
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin:0em 2.5em;
 }
 #gamesPage aside h1{
     grid-column:1/4;
@@ -296,6 +298,9 @@ footer{
     border-top:.5em solid;
     padding-top:1.5em;
     z-index:1;
+}
+#homePage footer{
+    grid-row:5/6;
 }
 #gamesPage footer{
     grid-row:6/7;
