@@ -217,11 +217,11 @@ main.addEventListener("mouseenter", function(){
                 // imageChanger(imageNumber);
                 //imageList[0].src = imageList[1].src
                 imageChangeTime = setTimeout(function(){
-                    imageList[visibleImage].classList.remove('visible');
-                    imageList[nextImage].classList.add('visible');
                     for (let imageCheck = 0;imageCheck < imageList.length;imageCheck++) {
                         if (imageList[imageCheck].classList.contains('visible')){
                             visibleImage = imageCheck;
+                            imageList[visibleImage].classList.remove('visible');
+                            imageList[nextImage].classList.add('visible');
                             if (visibleImage + 1 == imageList.length){
                                 nextImage = 0;
                             } else{
