@@ -152,18 +152,17 @@ mainImages = main.getElementsByTagName("img");
 // }
 
 function scrollCaller(sectionNo){
-    sectionNo.style.transition = '.5s';
-    sectionNo.style.opacity = '0.8';
+    sectionNo.classList.remove('invisible');
     sectionNo.style.margin = 0;
     sectionCounter ++;
 };
 function scrollRemover(sectionNo){
     if (sectionCounter % 2 == 0){
-        sectionNo.style.marginLeft = '100%';
+        sectionNo.style.marginLeft = '80%';
     } else{
-        sectionNo.style.marginRight = '100%';
+        sectionNo.style.marginRight = '80%';
     }
-    sectionNo.style.opacity = '0';
+    sectionNo.classList.add('invisible');
     sectionCounter --;
 }
 
@@ -207,9 +206,9 @@ let visibleImage = 0;
 let nextImage = 1;
 main.addEventListener("mouseenter", function(){
     for (let n = 1;n < mainSections.length;n++){
-        mainSections[n].addEventListener("mouseover", function(){
-            opacityChanger = mainSections[n].style.opacity = '1';
-        });
+        // mainSections[n].addEventListener("mouseover", function(){
+        //     opacityChanger = mainSections[n].style.opacity = '1';
+        // });
         mainSections[n].addEventListener("mouseenter", function(){
             imageChanging = true;
             imageList = mainSections[n].getElementsByTagName("img");
@@ -259,9 +258,7 @@ main.addEventListener("mouseenter", function(){
             }
         });
         mainSections[n].addEventListener("mouseleave", function(){
-            console.log('leave');
             changerIdle = true;
-            opacityChanger = mainSections[n].style.opacity = '0.8';
             imageNumber = 0;
             clearTimeout(imageChangeTime);
             imageChanging = false;
