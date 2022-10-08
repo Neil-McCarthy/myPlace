@@ -84,29 +84,43 @@ nav{
     box-shadow:-.2em .5em 1em;
     z-index:2;
 }
-#homePage nav ul {
+nav ul {
     height:100%;
+    width:15%;
+    transition:.5;
 }
-#homePage nav ul a{
+
+nav ul li{
+    width:10%;
+    padding:0;
+    height:100%;
+    float:right;
+}
+nav ul a{
     font-size:120%;
     font-family: 'Staatliches', cursive;
     background-color:silver;
     height:100%;
     width:100%;
+    display:inline-block;
     transition:.5s;
 }
-#homePage nav ul a:hover{
+nav ul a:hover{
     background-color:whitesmoke;
     transition:.5s;
+}
+nav ul ul{
+    top:100%;
+    width:100%;
+    opacity:0;
+}
+nav li:hover ul{
+    opacity:1;
 }
 nav li:hover #dropDown{
     transition:.5s;
 }
-#homePage nav li{
-    display: inline-block;
-    padding:0;
-    height:100%;
-}
+
 /* <<<NAV */
 
 
