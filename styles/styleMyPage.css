@@ -106,7 +106,7 @@ nav ul a{
     height:100%;
     width:100%;
     display:inline-block;
-    transition:.5s;
+    transition:1s;
 }
 nav ul ul li{
     width:100%;
@@ -122,7 +122,7 @@ nav ul ul{
     height:0;
     width:100%;
     opacity:0;
-    transition:.2s;
+    transition:.4s;
 }
 nav li:hover ul{
     opacity:1;
@@ -313,6 +313,13 @@ aside img{
     margin-bottom:1em;
     box-shadow:.5em .5em .4em;
     transition:.3s;
+}
+aside a{
+    transition: .5s;
+}
+aside a:hover{
+    background-color:#3a4750;
+    color: #eeeeee;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
