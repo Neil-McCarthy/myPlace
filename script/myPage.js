@@ -153,14 +153,15 @@ mainImages = main.getElementsByTagName("img");
 
 function scrollCaller(sectionNo){
     sectionNo.classList.remove('invisible');
-    sectionNo.style.margin = 0;
+    sectionNo.style.marginLeft = 0;
+    sectionNo.style.marginRight = 0;
     sectionCounter ++;
 };
 function scrollRemover(sectionNo){
     if (sectionCounter % 2 == 0){
-        sectionNo.style.marginLeft = '80%';
+        sectionNo.style.marginLeft = '100%';
     } else{
-        sectionNo.style.marginRight = '80%';
+        sectionNo.style.marginRight = '100%';
     }
     sectionNo.classList.add('invisible');
     sectionCounter --;
