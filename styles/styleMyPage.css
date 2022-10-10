@@ -86,8 +86,8 @@ nav{
 }
 nav ul {
     height:100%;
-    width:15%;
     transition:.5;
+    list-style: none;
 }
 
 nav ul li{
@@ -104,6 +104,10 @@ nav ul a{
     width:100%;
     display:inline-block;
     transition:.5s;
+}
+nav ul ul li{
+    width:100%;
+    display: block;
 }
 nav ul a:hover{
     background-color:whitesmoke;
