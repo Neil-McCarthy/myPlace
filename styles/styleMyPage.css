@@ -119,11 +119,14 @@ nav ul a:hover{
 }
 nav ul ul{
     top:100%;
+    height:0;
     width:100%;
     opacity:0;
+    transition:.2s;
 }
 nav li:hover ul{
     opacity:1;
+    height:100%;
 }
 nav li:hover #dropDown{
     transition:.5s;

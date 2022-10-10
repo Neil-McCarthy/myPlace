@@ -213,7 +213,6 @@ let enemyID;
 let lastX = 1500*3/4;
 let playing = true;
 let playerPosition = 0;
-let divWidth = document.querySelector('div').clientWidth;
 let squaresPlayer = {
     x:730,
     y:600,
@@ -571,36 +570,34 @@ controller = {
 //<<<MAIN NAV SELECTOR
 
 //GAME SELECTOR NAV>>>
-let gameNav = document.getElementById("gameOptions").getElementsByTagName("button");
-let gameNavClicked;
-let flippy = 0;
-for (let gameNavSpecific = 0;gameNavSpecific < gameNav.length;gameNavSpecific++){
-    gameNav[gameNavSpecific].addEventListener("mouseenter", function(){
-        gameNav[gameNavSpecific].style.background = 'black';
-        gameNav[gameNavSpecific].onclick = function gameNavClick() {
-            localStorage.setItem('game',gameNavSpecific);
-            console.log(gameNavSpecific);
-            gameRestart(gameNavSpecific);
-            gameNav[flippy].style.background = 'silver';
-            gameNav[gameNavSpecific].style.background = 'whitesmoke';
-            flippy = gameNavSpecific;
-        }
-//             for (let gameNavCorrector = 0;gameNavCorrector < gameNav.length;gameNavCorrector++){
-//                 console.log(gameNavSpecific, gameNavCorrector);
-//                 if (gameNavSpecific == gameNavCorrector){
-//                     gameNav[gameNavSpecific].style.background = '#e0c9ab';
-//                 }
-//                 gameNavClicked = gameNavSpecific;
-//             }
+// let flippy = 0;
+// for (let gameNavSpecific = 0;gameNavSpecific < gameNav.length;gameNavSpecific++){
+//     gameNav[gameNavSpecific].addEventListener("mouseenter", function(){
+//         gameNav[gameNavSpecific].style.background = 'black';
+//         gameNav[gameNavSpecific].onclick = function gameNavClick() {
+//             localStorage.setItem('game',gameNavSpecific);
+//             console.log(gameNavSpecific);
+//             gameRestart(gameNavSpecific);
+//             gameNav[flippy].style.background = 'silver';
+//             gameNav[gameNavSpecific].style.background = 'whitesmoke';
+//             flippy = gameNavSpecific;
 //         }
-        gameNav[gameNavSpecific].addEventListener("mouseleave", function(){
-            if (gameNavSpecific != flippy){
-                gameNav[gameNavSpecific].style.background = 'silver';
-            }
-        });
+// //             for (let gameNavCorrector = 0;gameNavCorrector < gameNav.length;gameNavCorrector++){
+// //                 console.log(gameNavSpecific, gameNavCorrector);
+// //                 if (gameNavSpecific == gameNavCorrector){
+// //                     gameNav[gameNavSpecific].style.background = '#e0c9ab';
+// //                 }
+// //                 gameNavClicked = gameNavSpecific;
+// //             }
+// //         }
+//         gameNav[gameNavSpecific].addEventListener("mouseleave", function(){
+//             if (gameNavSpecific != flippy){
+//                 gameNav[gameNavSpecific].style.background = 'silver';
+//             }
+//         });
 
-    }, false);
-}
+//     }, false);
+// }
 //<<<GAME SELECTOR NAV
 
 // Math.random();
