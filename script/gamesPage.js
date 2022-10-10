@@ -10,7 +10,6 @@ dropID = 'drop'+0;
 main = document.querySelector("main");
 mainSections = main.getElementsByTagName("section");
 mainImages = main.getElementsByTagName("img");
-let gameNavSubOptions = document.getElementById("drop2").getElementsByTagName("a");
 //<<GENERAL
 
 
@@ -100,11 +99,11 @@ function gameRestart(gameSelected){
 
 
 //GAME SELECTOR
-for (let specificGame=0; specificGame < gameNavSubOptions.length; specificGame++){
-    gameNavSubOptions[specificGame].onclick = function afunction(){
-        localStorage.setItem('game',specificGame);
-    }
-}
+// for (let specificGame=0; specificGame < gameNavSubOptions.length; specificGame++){
+//     gameNavSubOptions[specificGame].onclick = function afunction(){
+//         localStorage.setItem('game',specificGame);
+//     }
+// }
 ///<<<GAME SELECTOR
 
 
@@ -545,30 +544,30 @@ controller = {
 //<<<ACTIVATE KEYS
 
 //MAIN NAV SELECTOR>>>
-let mainNavButtons = document.getElementById("mainNav").getElementsByTagName("li");
-for (let mainNavSpecific = 0;mainNavSpecific < mainNavButtons.length;mainNavSpecific++){
-    mainNavButtons[mainNavSpecific].addEventListener("mouseenter", function(){
-        dropList = document.getElementById(dropID).style.display = "none";
-        dropID = 'drop'+mainNavSpecific;
-        dropList = document.getElementById(dropID).style.transition = ".5s";
-        dropList = document.getElementById(dropID).style.display = "block";
-        mainNavButtons[mainNavSpecific].addEventListener("mouseleave", function(){
-            dropList = document.getElementById(dropID).addEventListener("mouseenter", function(){
-                hover = true;
-            });
-            dropList = document.getElementById(dropID).addEventListener("mouseleave", function(){
-                hover = false;
-                dropList = document.getElementById(dropID).style.display = "none";
+// let mainNavButtons = document.getElementById("mainNav").getElementsByTagName("li");
+// for (let mainNavSpecific = 0;mainNavSpecific < mainNavButtons.length;mainNavSpecific++){
+//     mainNavButtons[mainNavSpecific].addEventListener("mouseenter", function(){
+//         dropList = document.getElementById(dropID).style.display = "none";
+//         dropID = 'drop'+mainNavSpecific;
+//         dropList = document.getElementById(dropID).style.transition = ".5s";
+//         dropList = document.getElementById(dropID).style.display = "block";
+//         mainNavButtons[mainNavSpecific].addEventListener("mouseleave", function(){
+//             dropList = document.getElementById(dropID).addEventListener("mouseenter", function(){
+//                 hover = true;
+//             });
+//             dropList = document.getElementById(dropID).addEventListener("mouseleave", function(){
+//                 hover = false;
+//                 dropList = document.getElementById(dropID).style.display = "none";
 
-            });
-            setTimeout(function(){
-                if (hover === false){
-                    dropList = document.getElementById(dropID).style.display = "none";
-            }
-            },.001);
-        });
-    }, false);
-}
+//             });
+//             setTimeout(function(){
+//                 if (hover === false){
+//                     dropList = document.getElementById(dropID).style.display = "none";
+//             }
+//             },.001);
+//         });
+//     }, false);
+// }
 //<<<MAIN NAV SELECTOR
 
 //GAME SELECTOR NAV>>>
@@ -607,35 +606,35 @@ for (let gameNavSpecific = 0;gameNavSpecific < gameNav.length;gameNavSpecific++)
 // Math.random();
 
 //BACKGROUND CANVAS ANIMATION>>>
-function createObjects(numberOfObjects){
-    for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
-        objects.push({
-            x:Math.floor((Math.random() * width) + 1),
-            y:Math.floor((Math.random() * height) + 1),
-            size:Math.floor((Math.random() * 30) + 20),
-            dy:1 * (Math.round(Math.random()) ? 1 : -1)
-        }
-    )
-//     objects[objectNumber].dy = 1;
-    objects[objectNumber].y += objects[objectNumber].dy;
-    context.beginPath();
-    context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
-    context.fill();
-    context.stroke();
-    }
-}
+// function createObjects(numberOfObjects){
+//     for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
+//         objects.push({
+//             x:Math.floor((Math.random() * width) + 1),
+//             y:Math.floor((Math.random() * height) + 1),
+//             size:Math.floor((Math.random() * 30) + 20),
+//             dy:1 * (Math.round(Math.random()) ? 1 : -1)
+//         }
+//     )
+// //     objects[objectNumber].dy = 1;
+//     objects[objectNumber].y += objects[objectNumber].dy;
+//     context.beginPath();
+//     context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
+//     context.fill();
+//     context.stroke();
+//     }
+// }
 
-function repeatObject(){
-    for(let objectChecker = 0;objectChecker < objects.length; objectChecker++){
-        if (objects[objectChecker].y > height + objects[objectChecker].size){
-            objects[objectChecker].dy *= -1;
-            objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-        } else if (objects[objectChecker].y + objects[objectChecker].size < 0){
-            objects[objectChecker].dy *= -1;
-            objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-        }
-    }
-}
+// function repeatObject(){
+//     for(let objectChecker = 0;objectChecker < objects.length; objectChecker++){
+//         if (objects[objectChecker].y > height + objects[objectChecker].size){
+//             objects[objectChecker].dy *= -1;
+//             objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
+//         } else if (objects[objectChecker].y + objects[objectChecker].size < 0){
+//             objects[objectChecker].dy *= -1;
+//             objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
+//         }
+//     }
+// }
 
 //<<<BACKGROUND CANVAS ANIMATION
 
@@ -662,8 +661,8 @@ draw = function(){
     height = canvas.height;
     context.clearRect(0, 0, width, height);
     context.fillStyle ='white';
-    createObjects(30);
-    repeatObject();
+    // createObjects(30);
+    // repeatObject();
     window.requestAnimationFrame(draw);
 }
 gamePlayer = function(){
