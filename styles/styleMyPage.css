@@ -15,12 +15,8 @@ html{
     scroll-behavior: smooth;
 }
 a{
-    display:block;
     text-decoration:none;
     color:black;
-}
-section h1{
-    margin-top:1em;
 }
 /* <<<GENERAL */
 
@@ -56,7 +52,7 @@ header div{
     opacity:0;
 }
 header div:hover{
-    background-color: #ea5115;
+    background-color: gold;
     opacity: 1;
 }
 header div:hover h1{
@@ -149,7 +145,7 @@ main{
     grid-column:1/6;
     grid-row:2/4;
     grid-auto-rows: 30em;
-    row-gap: 4em;
+    row-gap: 6em;
 }
 #gamesPage main{
     grid-column:1/6;
@@ -275,19 +271,19 @@ aside{
     grid-column:1/6;
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    margin:0em 2.5em;
     background-color:#eeeeee;
     color: #3a4750;
-    z-index:1;
     transition:.5s;
 }
 aside h1{
     background-color:gold;
     color: #3a4750;
+    padding: .5em 0;
 }
 aside > h1{
     grid-column: 1/4;
     height:2em;
+    padding:0;
 }
 aside p{
     margin: 0em 2.5em 1em 2.5em;
