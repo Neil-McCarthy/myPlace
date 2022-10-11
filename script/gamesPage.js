@@ -12,8 +12,18 @@ mainSections = main.getElementsByTagName("section");
 let mainGmaesList = main.getElementsByTagName('ul')[0].getElementsByTagName('button');
 for (let clickedGame = 0;clickedGame < mainGmaesList.length;clickedGame++){
     mainGmaesList[clickedGame].onclick = () => {
-        localStorage.setItem('game',clickedGame);
+        gameChanger(clickedGame);
     };
+}
+let navGamesList = body.getElementsByTagName('nav')[0].getElementsByTagName('li')[12].getElementsByTagName('ul')[0].getElementsByTagName('a');
+for (let clickedGame = 0;clickedGame < navGamesList.length;clickedGame++){
+    navGamesList[clickedGame].onclick = () => {
+        gameChanger(clickedGame);
+    };
+}
+function gameChanger(game) {
+    gameRestart(game);
+    localStorage.setItem('game',game);
 }
 //<<<GAME SELECTOR NAV
 
@@ -97,17 +107,6 @@ function gameRestart(gameSelected){
 }
 //<<<RESTART GAMES
 
-
-
-
-
-//GAME SELECTOR
-// for (let specificGame=0; specificGame < gameNavSubOptions.length; specificGame++){
-//     gameNavSubOptions[specificGame].onclick = function afunction(){
-//         localStorage.setItem('game',specificGame);
-//     }
-// }
-///<<<GAME SELECTOR
 
 
 //SCOREBOARD CREATOR>>>
