@@ -8,6 +8,16 @@ mainSections = main.getElementsByTagName("section");
 //<<GENERAL
 
 
+//GAME SELECTOR NAV>>>
+let mainGmaesList = main.getElementsByTagName('ul')[0].getElementsByTagName('button');
+for (let clickedGame = 0;clickedGame < mainGmaesList.length;clickedGame++){
+    mainGmaesList[clickedGame].onclick = () => {
+        localStorage.setItem('game',clickedGame);
+    };
+}
+//<<<GAME SELECTOR NAV
+
+
 //ALL GAME GENERAL>>>
 let gamePlayer,controller,alienRowCalculator,scoreTable,tableRow,tableHeader,tableHeaderValue,tableValue,tableValueValue,historyParagraph,keyBindingParagraph,historyContent,keyBindingContent;
 let gameCanvas = document.getElementById('gameCanvas');
@@ -534,36 +544,7 @@ controller = {
 //<<<ACTIVATE KEYS
 
 
-//GAME SELECTOR NAV>>>
-// let flippy = 0;
-// for (let gameNavSpecific = 0;gameNavSpecific < gameNav.length;gameNavSpecific++){
-//     gameNav[gameNavSpecific].addEventListener("mouseenter", function(){
-//         gameNav[gameNavSpecific].style.background = 'black';
-//         gameNav[gameNavSpecific].onclick = function gameNavClick() {
-//             localStorage.setItem('game',gameNavSpecific);
-//             console.log(gameNavSpecific);
-//             gameRestart(gameNavSpecific);
-//             gameNav[flippy].style.background = 'silver';
-//             gameNav[gameNavSpecific].style.background = 'whitesmoke';
-//             flippy = gameNavSpecific;
-//         }
-// //             for (let gameNavCorrector = 0;gameNavCorrector < gameNav.length;gameNavCorrector++){
-// //                 console.log(gameNavSpecific, gameNavCorrector);
-// //                 if (gameNavSpecific == gameNavCorrector){
-// //                     gameNav[gameNavSpecific].style.background = '#e0c9ab';
-// //                 }
-// //                 gameNavClicked = gameNavSpecific;
-// //             }
-// //         }
-//         gameNav[gameNavSpecific].addEventListener("mouseleave", function(){
-//             if (gameNavSpecific != flippy){
-//                 gameNav[gameNavSpecific].style.background = 'silver';
-//             }
-//         });
 
-//     }, false);
-// }
-//<<<GAME SELECTOR NAV
 
 // Math.random();
 
