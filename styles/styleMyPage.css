@@ -232,12 +232,19 @@ main section img{
     margin-bottom: 1em;
 }
 #gamesPage main ul li{
-    background-color: #eeeeee;
-    color: #3a4750;
     width:10%;
-    padding:0;
     height:100%;
     display: inline-block;
+}
+#gamesPage main ul button{
+    background-color: #eeeeee;
+    color: #3a4750;
+    width:100%;
+    padding:0;
+    height:100%;
+}
+#gamesPage main ul button:hover{
+    cursor: pointer;
 }
 #gamesPage main section:nth-child(2),#gamesPage main section:nth-child(3){
     grid-column: 1/2;
