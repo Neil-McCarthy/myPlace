@@ -272,12 +272,12 @@ playerChanger.onclick = function playerChange(){
 //PONG - AI PLAYER>>>
 function AIPlayer(ballLocation){
     pongAICounter += 1;
-    if (pongAICounter == 25){
-        if (pongRightPlayer.y > pongBall.y - 100){
+    if (pongAICounter == 15){
+        if (pongRightPlayer.y + 30 > pongBall.y){
             pongAIDestination = Math.random() * (pongRightPlayer.y - (pongBall.y - 25)) + pongBall.y - 25;
             pongAIDirection = 'up'
         }
-        if (pongRightPlayer.y < pongBall.y){
+        if (pongRightPlayer.y + 60 < pongBall.y + 10){
             pongAIDestination = Math.random() * (pongBall.y - (pongRightPlayer.y + 25)) + pongRightPlayer.y + 25;
             pongAIDirection = 'down'
         }

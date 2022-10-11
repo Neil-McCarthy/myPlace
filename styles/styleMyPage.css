@@ -52,7 +52,7 @@ header div{
     opacity:0;
 }
 header div:hover{
-    background-color: gold;
+    background-color: salmon;
     opacity: 1;
 }
 header div:hover h1{
@@ -82,7 +82,7 @@ nav{
     height:3em;
     top:0;
     left:0;
-    background-image: linear-gradient(to right, #303841 , gold);
+    background-image: linear-gradient(to right, #303841 , salmon);
     box-shadow:-.2em .5em 1em;
     z-index:2;
 }
@@ -101,7 +101,7 @@ nav ul li{
 nav ul a{
     font-size:120%;
     font-family: 'Staatliches', cursive;
-    background-color:gold;
+    background-color:salmon;
     color: #303841;
     height:100%;
     width:100%;
@@ -195,7 +195,7 @@ main section:first-child p{
     grid-column:1/2;
 }
 #homePage main h1{
-    background-color: gold;
+    background-color: salmon;
     color: #3a4750;
     height: 25%;
     margin-top: 0;
