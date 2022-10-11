@@ -1,20 +1,15 @@
 //GENERAL>>>
-let canvas,width,height,context,draw,mouseX,mouseY,dropList,dropID,main,opacityChanger,mainImages,mainHover,imageOpacity1,imageOpacity2,imageIntervalID;
+let canvas,width,height,context,draw,mouseX,mouseY,main;
 let body = document.querySelector("body");
 let mainSections = [];
 let objects = [];
-let sectionCounter = 0;
-let hover = false;
-let imageTracker = 0;
-dropID = 'drop'+0;
 main = document.querySelector("main");
 mainSections = main.getElementsByTagName("section");
-mainImages = main.getElementsByTagName("img");
 //<<GENERAL
 
 
 //ALL GAME GENERAL>>>
-let gamePlayer,controller,alienRowCalculator,scoreHeading,scoreHeadingValue,scoreTable,tableRow,tableHeader,tableHeaderValue,tableValue,tableValueValue,historyParagraph,keyBindingParagraph,historyContent,keyBindingContent;
+let gamePlayer,controller,alienRowCalculator,scoreTable,tableRow,tableHeader,tableHeaderValue,tableValue,tableValueValue,historyParagraph,keyBindingParagraph,historyContent,keyBindingContent;
 let gameCanvas = document.getElementById('gameCanvas');
 let gameContext = gameCanvas.getContext('2d');
 let gameWidth = gameCanvas.width;
@@ -55,8 +50,6 @@ pause.onclick = function gamePauser(){
     window.requestAnimationFrame(gamePlayer);
 }
 //<<<SCREEN LOCK INSTRUCTION
-
-
 //<<<EXTRA GAME WINDOWS
 
 
@@ -290,7 +283,7 @@ function AIPlayer(ballLocation){
 //<<<PONG - AI PLAYER
 
 //>>>SPACE INVADERS - REVIVE
-function doSomething() {
+function playerRevive() {
    player.alive = true;
    flames.length = 0;
 }
@@ -349,8 +342,7 @@ function createAliens(rowsOfAliens){
             player.alive = false;
             player.x = gameWidth/2 - 5;
             explosionSound.play();
-            setTimeout(doSomething, 3000);
-//             window.alert('You have been murdered to death.')
+            setTimeout(playerRevive, 3000);
         }
 //         for (let m = 0;m < blockades.length;m++){
 //             if (collision(alienShots[alien],blockades[m],2)){
@@ -370,7 +362,6 @@ function createAliens(rowsOfAliens){
         if (aliens[alien].y > 600){
             localStorage.setItem('lastScore',kills);
             gameOver = true;
-            window.alert('The aliens have landed. Game over.')
         }
 //         gameContext.fillRect(aliens[alien].x + aliens[alien].size/2 - 2.5,aliens[alien].y + 10,alienShots[alien].size,alienShots[alien].size*2);
         gameContext.fillStyle ='lime';
@@ -401,13 +392,13 @@ function createAliens(rowsOfAliens){
 
 function collision(projectile,object,projectileSizeMultiplier){
     if (projectile.x + projectile.size < object.x ||
-            object.x + object.size < projectile.x ||
-            projectile.y > object.y + object.size ||
-            object.y > projectile.y + projectile.size*projectileSizeMultiplier){
+        object.x + object.size < projectile.x ||
+        projectile.y > object.y + object.size ||
+        object.y > projectile.y + projectile.size*projectileSizeMultiplier){
         return true;
-            } else{
-                return false;
-            }
+    } else{
+        return false;
+    }
 }
 /*
 function explosion(explosionX,explosionY){
@@ -542,32 +533,6 @@ controller = {
 }
 //<<<ACTIVATE KEYS
 
-//MAIN NAV SELECTOR>>>
-// let mainNavButtons = document.getElementById("mainNav").getElementsByTagName("li");
-// for (let mainNavSpecific = 0;mainNavSpecific < mainNavButtons.length;mainNavSpecific++){
-//     mainNavButtons[mainNavSpecific].addEventListener("mouseenter", function(){
-//         dropList = document.getElementById(dropID).style.display = "none";
-//         dropID = 'drop'+mainNavSpecific;
-//         dropList = document.getElementById(dropID).style.transition = ".5s";
-//         dropList = document.getElementById(dropID).style.display = "block";
-//         mainNavButtons[mainNavSpecific].addEventListener("mouseleave", function(){
-//             dropList = document.getElementById(dropID).addEventListener("mouseenter", function(){
-//                 hover = true;
-//             });
-//             dropList = document.getElementById(dropID).addEventListener("mouseleave", function(){
-//                 hover = false;
-//                 dropList = document.getElementById(dropID).style.display = "none";
-
-//             });
-//             setTimeout(function(){
-//                 if (hover === false){
-//                     dropList = document.getElementById(dropID).style.display = "none";
-//             }
-//             },.001);
-//         });
-//     }, false);
-// }
-//<<<MAIN NAV SELECTOR
 
 //GAME SELECTOR NAV>>>
 // let flippy = 0;
@@ -602,39 +567,6 @@ controller = {
 
 // Math.random();
 
-//BACKGROUND CANVAS ANIMATION>>>
-// function createObjects(numberOfObjects){
-//     for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
-//         objects.push({
-//             x:Math.floor((Math.random() * width) + 1),
-//             y:Math.floor((Math.random() * height) + 1),
-//             size:Math.floor((Math.random() * 30) + 20),
-//             dy:1 * (Math.round(Math.random()) ? 1 : -1)
-//         }
-//     )
-// //     objects[objectNumber].dy = 1;
-//     objects[objectNumber].y += objects[objectNumber].dy;
-//     context.beginPath();
-//     context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
-//     context.fill();
-//     context.stroke();
-//     }
-// }
-
-// function repeatObject(){
-//     for(let objectChecker = 0;objectChecker < objects.length; objectChecker++){
-//         if (objects[objectChecker].y > height + objects[objectChecker].size){
-//             objects[objectChecker].dy *= -1;
-//             objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-//         } else if (objects[objectChecker].y + objects[objectChecker].size < 0){
-//             objects[objectChecker].dy *= -1;
-//             objects[objectChecker].x = Math.floor((Math.random() * width) + 1);
-//         }
-//     }
-// }
-
-//<<<BACKGROUND CANVAS ANIMATION
-
 
 function platformCollision(){
     for (let specificPlatform = 0;specificPlatform < platform.length; specificPlatform++){
@@ -651,17 +583,6 @@ function platformCollision(){
 }
 
 
-draw = function(){
-    canvas = document.querySelector('canvas');
-    context = canvas.getContext('2d');
-    width = canvas.width;
-    height = canvas.height;
-    context.clearRect(0, 0, width, height);
-    context.fillStyle ='white';
-    // createObjects(30);
-    // repeatObject();
-    window.requestAnimationFrame(draw);
-}
 gamePlayer = function(){
     if (paused == false){
         if (localStorage.getItem('game') == 0){
@@ -921,7 +842,6 @@ gamePlayer = function(){
         }
     }
 }
-window.requestAnimationFrame(draw);
 window.requestAnimationFrame(gamePlayer);
 window.addEventListener('keydown',controller.keyListener);
 window.addEventListener('keyup',controller.keyListener);
