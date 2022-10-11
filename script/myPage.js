@@ -1,53 +1,66 @@
 let width,height,context,draw,mouseX,mouseY;
 let objects = [];
-let objectCount = 150;
+let objectCount = 200;
 let hover = false;
 
 Math.random();
-
-function createObjects(numberOfObjects){
+let objectsValuesGiven = false;
+function objectValuesAsign(numberOfObjects){
     for(let objectNumber = 0;objectNumber < numberOfObjects; objectNumber++){
         objects.push({
             x:Math.floor((Math.random() * width) + 1),
             y:Math.floor((Math.random() * height) + 1),
-            size:2,
+            size:1.5,
             dx:0,
             dy:0,
             direction:0
         })
-        if (objects[objectNumber].direction == 0){
-            directionGiver(objectNumber);
+    }
+}
+
+function createObjects(specificObject){
+        if (specificObject.direction == 0){
+            if (specificObject.x < width/2){
+                specificObject.dx = -.1 * Math.floor((Math.random() * 10) + 1);
+            } else{
+                specificObject.dx = .1 * Math.floor((Math.random() * 10) + 1);
+            }
+            if (specificObject.y < height/2){
+                specificObject.dy = -.1 * Math.floor((Math.random() * 10) + 1);
+            } else{
+                specificObject.dy = .1 * Math.floor((Math.random() * 10) + 1);
+            }
+            specificObject.direction = 1;
         }
     //     objects[objectNumber].size += .5;
-        objects[objectNumber].x += objects[objectNumber].dx;
-        objects[objectNumber].y += objects[objectNumber].dy;
+        specificObject.x += specificObject.dx;
+        specificObject.y += specificObject.dy;
         context.beginPath();
-        context.arc(objects[objectNumber].x,objects[objectNumber].y,objects[objectNumber].size, 0, 2 * Math.PI);
+        context.arc(specificObject.x,specificObject.y,specificObject.size, 0, 2 * Math.PI);
         context.shadowColor="white";
-        context.shadowBlur = 20;
+        context.shadowBlur = 1;
     //     context.filter = 'blur(1px)';
         context.fill();
         context.stroke();
-        if ((objects[objectNumber].y > height) || (objects[objectNumber].y < 0) || (objects[objectNumber].x > width) || (objects[objectNumber].x < 0)){
-            objects[objectNumber].y = Math.floor((Math.random() * height*3/4) + height/4);
-            objects[objectNumber].x = Math.floor((Math.random() * width*3/4) + width/4);
+        if ((specificObject.y > height) || (specificObject.y < 0) || (specificObject.x > width) || (specificObject.x < 0)){
+            specificObject.y = Math.floor((Math.random() * height*3/4) + height/4);
+            specificObject.x = Math.floor((Math.random() * width*3/4) + width/4);
         }
-    }
 }
 
 
 function directionGiver(chosenObject){
-    if (objects[chosenObject].x < width/2){
-        objects[chosenObject].dx = -.1 * Math.floor((Math.random() * 10) + 1);
+    if (chosenObject.x < width/2){
+        chosenObject.dx = -.1 * Math.floor((Math.random() * 10) + 1);
     } else{
-        objects[chosenObject].dx = .1 * Math.floor((Math.random() * 10) + 1);
+        chosenObject.dx = .1 * Math.floor((Math.random() * 10) + 1);
     }
-    if (objects[chosenObject].y < height/2){
-        objects[chosenObject].dy = -.1 * Math.floor((Math.random() * 10) + 1);
+    if (chosenObject.y < height/2){
+        chosenObject.dy = -.1 * Math.floor((Math.random() * 10) + 1);
     } else{
-        objects[chosenObject].dy = .1 * Math.floor((Math.random() * 10) + 1);
+        chosenObject.dy = .1 * Math.floor((Math.random() * 10) + 1);
     }
-    objects[chosenObject].direction = 1;
+    chosenObject.direction = 1;
 }
 
 
@@ -66,7 +79,11 @@ function directionGiver(chosenObject){
 draw = function(){
     context = headerCanvas.getContext('2d');
     width = headerCanvas.width;
-    height = 1000;
+    height = headerCanvas.height;
+    if (objectsValuesGiven == false) {
+        objectValuesAsign(objectCount);
+        objectsValuesGiven = true;
+    }
     context.clearRect(0, 0, width, height);
     // canvas.onmousemove = function(evt){
     //     let mouseXY = mousePosition(event);
@@ -114,10 +131,11 @@ draw = function(){
     //     }
     // }
     context.fillStyle ='white';
-    createObjects(objectCount);
+    for (let objectIndex = 0;objectIndex < objects.length;objectIndex++) {
+        createObjects(objects[objectIndex]);
+    }
     window.requestAnimationFrame(draw);
 }
-
 window.requestAnimationFrame(draw);
 
 
