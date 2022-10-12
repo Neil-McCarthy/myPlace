@@ -156,6 +156,10 @@ function scoreTracker(){
 //<<<SCOREBOARD UPDATER
 
 
+///
+/////SPACE INVADERS>>> /////
+///
+
 //SPACE INVADERS GENERAL>>>
 let playerLastX,playerLastY;
 let shooting = false;
@@ -201,6 +205,166 @@ let shot = {
 }
 //<<<SPACE INVADERS GENERAL
 
+//>>>SPACE INVADERS - REVIVE
+function playerRevive() {
+    player.alive = true;
+    flames.length = 0;
+ }
+ //<<<SPACE INVADERS - REVIVE
+ 
+ 
+ //CREATE ALIENS>>>
+ let aliensValuesGiven = false;
+ function alienValuesAsign(rowsOfAliens){
+     alienRowCalculator = rowsOfAliens*10
+     for(let alien = 0;alien < alienRowCalculator;alien++){
+         aliens.push({
+         x:alienXPos,
+         y:alienYPos,
+         size:20,
+         dx:alienSpeed,
+         alive:true
+         })
+         if (aliens.length % 10) {
+             alienXPos += 50;
+         } else {
+             alienXPos = 150;
+             alienYPos += 25;
+         }
+     }
+     aliensValuesGiven = true;
+ }
+ function createAliens(alien, alienNumber){
+     if (deadAliens.includes(alien)){
+         aliens[alien].alive = false;
+     }
+     alienShots.push({
+         x:alienXPos + alien.size/2 - 2.5,
+         y:alienYPos - 50,
+     size:5,
+     fired:0,
+     sent:0
+     })
+     alien.x += alien.dx;
+     if (alien.x > gameWidth - 100 || alien.x < 100){
+         alien.y += 25;
+         alien.dx *= 1.1;
+         alien.dx *= -1;
+     }
+     if (alien.x > player.x - 100 && alien.x < player.x + 100){
+         alienShotDecider = Math.floor((Math.random() * 1000));
+         if (alienShotDecider < 20 && alien.alive === true){
+             alienShots[alienNumber].fired = 1;
+         }
+     }
+     gameContext.fillStyle ='yellow';
+     if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 0 && alien.alive === true){
+         alienShots[alienNumber].x = alien.x + alien.size/2 - 2.5;
+         alienShots[alienNumber].y = alienYPos + 10;
+         gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
+         alienShots[alienNumber].sent = 1;
+     }
+     if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 1 && alien.alive === true){
+         alienShots[alienNumber].y += 2;
+         gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
+     }
+     if (collision(alienShots[alienNumber],player,2)){
+     }   else{
+         localStorage.setItem('lastScore',kills);
+         playerLastX = player.x;
+         playerLastY = player.y;
+         player.alive = false;
+         player.x = gameWidth/2 - 5;
+         explosionSound.play();
+         setTimeout(playerRevive, 3000);
+     }
+     if (alienShots[alienNumber].y > gameHeight){
+         reload('alien',alienNumber);
+     }
+ //         for (let m = 0;m < blockades.length;m++){
+ //             if (collision(alienShots[alien],blockades[m],2)){
+ //             }   else{
+ //                 reload('alien',alien);
+ //                 blockades[m].y = -100;
+ //             }
+ //             if (collision(shot,blockades[m],3)){
+ //             }   else{
+ //                 reload('player',0);
+ //                 blockades[m].y = -100;
+ //             }
+ //         }
+ //     if (alienShots[alien].y > gameHeight){
+ //         reload('alien',alien);
+ //     }
+ //     if (aliens[alien].y > 600){
+ //         localStorage.setItem('lastScore',kills);
+ //         gameOver = true;
+ //     }
+ // //         gameContext.fillRect(aliens[alien].x + aliens[alien].size/2 - 2.5,aliens[alien].y + 10,alienShots[alien].size,alienShots[alien].size*2);
+     gameContext.fillStyle ='lime';
+     if (alien.alive === true){
+         gameContext.fillRect(alien.x,alien.y,alien.size,alien.size);
+     }
+ //     alienXPos += 50;
+ //     if (aliens.length == 10 || aliens.length == 20 || aliens.length == 30 || aliens.length == 40){
+ //         alienXPos = 150;
+ //         alienYPos += 25;
+ //     }
+     if (collision(shot,alien,3)){
+     } else {
+         //deadAliens.push(alienNumber);
+         alien.alive === false;
+         alien.size = 0;
+         alien.x = 400;
+         alien.y = -50;
+         alienShots[alienNumber].size = 0;
+         reload('player',0);
+         kills += 1;
+         scoreTracker();
+         alienExplosion.play();
+     }
+ }
+ //<<<CREATE ALIENS
+ 
+ function reload(type,alienNumber){
+    if (type === 'player'){
+        shot.x = player.x + player.size*1.5 - 1.75
+        shot.y = player.y - player.size;
+        shooting = false;
+        fired = false;
+    }
+    if (type === 'alien'){
+        alienShots[alienNumber].x = aliens[alienNumber].x + aliens[alienNumber].size/2 - 2.5;
+        alienShots[alienNumber].y = alienYPos + 10;
+        alienShots[alienNumber].fired = 0;
+        alienShots[alienNumber].sent = 0;
+    }
+}
+
+//SPACE INVEDERS - CREATE BLOCKADE>>>
+function createBlockade(blockadeXPosition){
+    blockadeCount +=1;
+    blockStartPoint = blockadeXPosition;
+    for (;blockadeBlock < blockadeCount*10;blockadeBlock++){
+        blockades.push({
+            x:blockadeXPosition,
+            y:650,
+            size:10
+        })
+        blockadeXPosition += 10
+        gameContext.fillRect(blockades[blockadeBlock].x,blockades[blockadeBlock].y,blockades[blockadeBlock].size,blockades[blockadeBlock].size);
+    }
+}
+//<<<SPACE INVEDERS - CREATE BLOCKADE
+
+///
+/////<<<SPACE INVADERS/////
+///
+
+
+///
+/////SQUARES GAME>>>/////
+///
 
 //SQUAREGAME GENERAL>>>
 let scrollPosition = 0;
@@ -231,6 +395,73 @@ let finish = {
 }
 //<<<SQUAREGAME GENERAL
 
+
+//SQUAREGAME - PLATFORMS>>>
+function platforms(xPosition,yPosition,wide,tall){
+    platform.push(
+        {
+        x:xPosition,
+        y:yPosition,
+        dx:0,
+        dy:0,
+        width:wide,
+        height:tall
+        }
+    );
+    gameContext.fillRect(platform[platformNumber].x,platform[platformNumber].y,platform[platformNumber].width,platform[platformNumber].height);
+    platformNumber += 1;
+}
+//<<<SQUAREGAME - PLATFORMS
+
+
+//SQUAREGAME - ENEMIES>>>
+function enemyCreator(xPosition,yPosition,size){
+    enemy.push(
+        {
+        x:xPosition,
+        y:yPosition,
+        dx:0,
+        dy:0,
+        size:size
+        }
+    );
+    enemyNumber += 1;
+}
+
+function enemyDraw(enemyNumber){
+    gameContext.fillRect(enemy[enemyNumber].x,enemy[enemyNumber].y,enemy[enemyNumber].size,enemy[enemyNumber].size);
+
+}
+//<<<SQUAREGAME - ENEMIES
+
+let jumpActive = false;
+//SQUAREGAME - ENEMY JUMP>>>
+function enemyJump(n){
+    setTimeout(function(){
+        enemy[n].dy -= 25;
+        jumpActive = false;
+    }, 1000);
+}
+//<<<SQUAREGAME - ENEMY JUMP
+
+
+//>>>SQUAREGAME - JUMP DELAY
+// function jumpDelay(){
+//     setTimeout(() =>{
+//         squaresPlayer.jumping = false;
+//     },1000);
+// }
+
+//<<<SQUAREGAME - JUMP DELAY
+
+///
+/////<<<SQUARES GAME/////
+///
+
+
+///
+/////PONG>>> /////
+///
 
 //PONG GENERAL>>>
 let pongRacketSound = new Audio('../audio/tennis2-SF.mp3');
@@ -292,126 +523,11 @@ function AIPlayer(ballLocation){
 }
 //<<<PONG - AI PLAYER
 
-//>>>SPACE INVADERS - REVIVE
-function playerRevive() {
-   player.alive = true;
-   flames.length = 0;
-}
-//<<<SPACE INVADERS - REVIVE
+///
+/////PONG>>> /////
+///
 
 
-//CREATE ALIENS>>>
-let aliensValuesGiven = false;
-function alienValuesAsign(rowsOfAliens){
-    alienRowCalculator = rowsOfAliens*10
-    for(let alien = 0;alien < alienRowCalculator;alien++){
-        aliens.push({
-        x:alienXPos,
-        y:alienYPos,
-        size:20,
-        dx:alienSpeed,
-        alive:true
-        })
-        if (aliens.length % 10) {
-            alienXPos += 50;
-        } else {
-            alienXPos = 150;
-            alienYPos += 25;
-        }
-    }
-    aliensValuesGiven = true;
-}
-function createAliens(alien, alienNumber){
-    if (deadAliens.includes(alien)){
-        aliens[alien].alive = false;
-    }
-    alienShots.push({
-        x:alienXPos + alien.size/2 - 2.5,
-        y:alienYPos - 50,
-    size:5,
-    fired:0,
-    sent:0
-    })
-    alien.x += alien.dx;
-    if (alien.x > gameWidth - 100 || alien.x < 100){
-        alien.y += 25;
-        alien.dx *= 1.1;
-        alien.dx *= -1;
-    }
-    if (alien.x > player.x - 100 && alien.x < player.x + 100){
-        alienShotDecider = Math.floor((Math.random() * 1000));
-        if (alienShotDecider < 20 && alien.alive === true){
-            alienShots[alienNumber].fired = 1;
-        }
-    }
-    gameContext.fillStyle ='yellow';
-    if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 0 && alien.alive === true){
-        alienShots[alienNumber].x = alien.x + alien.size/2 - 2.5;
-        alienShots[alienNumber].y = alienYPos + 10;
-        gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
-        alienShots[alienNumber].sent = 1;
-    }
-    if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 1 && alien.alive === true){
-        alienShots[alienNumber].y += 2;
-        gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
-    }
-    if (collision(alienShots[alienNumber],player,2)){
-    }   else{
-        localStorage.setItem('lastScore',kills);
-        playerLastX = player.x;
-        playerLastY = player.y;
-        player.alive = false;
-        player.x = gameWidth/2 - 5;
-        explosionSound.play();
-        setTimeout(playerRevive, 3000);
-    }
-    if (alienShots[alienNumber].y > gameHeight){
-        reload('alien',alienNumber);
-    }
-//         for (let m = 0;m < blockades.length;m++){
-//             if (collision(alienShots[alien],blockades[m],2)){
-//             }   else{
-//                 reload('alien',alien);
-//                 blockades[m].y = -100;
-//             }
-//             if (collision(shot,blockades[m],3)){
-//             }   else{
-//                 reload('player',0);
-//                 blockades[m].y = -100;
-//             }
-//         }
-//     if (alienShots[alien].y > gameHeight){
-//         reload('alien',alien);
-//     }
-//     if (aliens[alien].y > 600){
-//         localStorage.setItem('lastScore',kills);
-//         gameOver = true;
-//     }
-// //         gameContext.fillRect(aliens[alien].x + aliens[alien].size/2 - 2.5,aliens[alien].y + 10,alienShots[alien].size,alienShots[alien].size*2);
-    gameContext.fillStyle ='lime';
-    if (alien.alive === true){
-        gameContext.fillRect(alien.x,alien.y,alien.size,alien.size);
-    }
-//     alienXPos += 50;
-//     if (aliens.length == 10 || aliens.length == 20 || aliens.length == 30 || aliens.length == 40){
-//         alienXPos = 150;
-//         alienYPos += 25;
-//     }
-    if (collision(shot,alien,3)){
-    } else {
-        //deadAliens.push(alienNumber);
-        //alien.alive === false;
-        alien.size = 0;
-        alien.x = 400;
-        alien.y = -50;
-        alienShots[alienNumber].size = 0;
-        reload('player',0);
-        kills += 1;
-        scoreTracker();
-        alienExplosion.play();
-    }
-}
-//<<<CREATE ALIENS
 
 
 function collision(projectile,object,projectileSizeMultiplier){
@@ -432,95 +548,10 @@ function explosion(explosionX,explosionY){
         gameContext.fillRect(explosionX,explosionY,2.5,2.5);
     }
 }*/
-function reload(type,alienNumber){
-    if (type === 'player'){
-        shot.x = player.x + player.size*1.5 - 1.75
-        shot.y = player.y - player.size;
-        shooting = false;
-        fired = false;
-    }
-    if (type === 'alien'){
-        alienShots[alienNumber].x = aliens[alienNumber].x + aliens[alienNumber].size/2 - 2.5;
-        alienShots[alienNumber].y = alienYPos + 10;
-        alienShots[alienNumber].fired = 0;
-        alienShots[alienNumber].sent = 0;
-    }
-}
-
-//SPACE INVEDERS - CREATE BLOCKADE>>>
-function createBlockade(blockadeXPosition){
-    blockadeCount +=1;
-    blockStartPoint = blockadeXPosition;
-    for (;blockadeBlock < blockadeCount*10;blockadeBlock++){
-        blockades.push({
-            x:blockadeXPosition,
-            y:650,
-            size:10
-        })
-        blockadeXPosition += 10
-        gameContext.fillRect(blockades[blockadeBlock].x,blockades[blockadeBlock].y,blockades[blockadeBlock].size,blockades[blockadeBlock].size);
-    }
-}
-//<<<SPACE INVEDERS - CREATE BLOCKADE
 
 
-//SQUAREGAME - PLATFORMS>>>
-function platforms(xPosition,yPosition,wide,tall){
-    platform.push(
-        {
-        x:xPosition,
-        y:yPosition,
-        dx:0,
-        dy:0,
-        width:wide,
-        height:tall
-        }
-    );
-    gameContext.fillRect(platform[platformNumber].x,platform[platformNumber].y,platform[platformNumber].width,platform[platformNumber].height);
-    platformNumber += 1;
-}
-//<<<SQUAREGAME - PLATFORMS
 
 
-//SQUAREGAME - ENEMIES>>>
-function enemyCreator(xPosition,yPosition,size){
-    enemy.push(
-        {
-        x:xPosition,
-        y:yPosition,
-        dx:0,
-        dy:0,
-        size:size
-        }
-    );
-    enemyNumber += 1;
-}
-
-function enemyDraw(enemyNumber){
-    gameContext.fillRect(enemy[enemyNumber].x,enemy[enemyNumber].y,enemy[enemyNumber].size,enemy[enemyNumber].size);
-
-}
-//<<<SQUAREGAME - ENEMIES
-
-let jumpActive = false;
-//SQUAREGAME - ENEMY JUMP>>>
-function enemyJump(n){
-    setTimeout(function(){
-        enemy[n].dy -= 25;
-        jumpActive = false;
-    }, 1000);
-}
-//<<<SQUAREGAME - ENEMY JUMP
-
-
-//>>>SQUAREGAME - JUMP DELAY
-// function jumpDelay(){
-//     setTimeout(() =>{
-//         squaresPlayer.jumping = false;
-//     },1000);
-// }
-
-//<<<SQUAREGAME - JUMP DELAY
 
 //ACTIVATE KEYS>>>
 controller = {
@@ -696,10 +727,10 @@ gamePlayer = function(){
             gameHeight = gameCanvas.height;
             gameContext.clearRect(0, 0, gameWidth, gameHeight);
             gameContext.fillStyle ='yellow';
-            platforms(200,550,60,10);
-            platforms(280,500,60,10);
-            platforms(360,450,60,10);
-            platforms(440,400,400,10);
+            platforms(200,550,60,5);
+            platforms(280,500,60,5);
+            platforms(360,450,60,5);
+            platforms(440,400,400,5);
             platforms(100,500,60,100);
             gameContext.fillStyle='cyan';
             enemyCreator(280,580,20);
