@@ -90,6 +90,7 @@ function gameRestart(gameSelected){
     }
     gameWindowUpdator(gameSelected);
     if (gameSelected == 0){
+        aliensValuesGiven = false;
         alienXPos = 150;
         alienYPos = 100;
         alienSpeed = .35;
@@ -311,10 +312,11 @@ function alienValuesAsign(rowsOfAliens){
         dx:alienSpeed,
         alive:true
         })
-        if (alien.x > gameWidth - 100 || alien.x < 100){
-            aliens[alien].y += 25;
-            aliens[alien].dx *= 1.1;
-            aliens[alien].dx *= -1;
+        if (aliens.length % 10) {
+            alienXPos += 50;
+        } else {
+            alienXPos = 150;
+            alienYPos += 25;
         }
     }
     aliensValuesGiven = true;
@@ -324,13 +326,18 @@ function createAliens(alien){
         aliens[alien].alive = false;
     }
     alienShots.push({
-    x:alienXPos + alien.size/2 - 2.5,
-    y:alienYPos + 10,
+    x:alienXPos,
+    y:alienYPos,
     size:5,
     fired:0,
     sent:0
     })
     alien.x += alien.dx;
+    if (alien.x > gameWidth - 100 || alien.x < 100){
+        alien.y += 25;
+        alien.dx *= 1.1;
+        alien.dx *= -1;
+    }
     // if (alien.x > player.x - 100 && alien.x < player.x + 100){
     //     alienShotDecider = Math.floor((Math.random() * 1000));
     //     if (alienShotDecider == 5){
@@ -642,7 +649,7 @@ gamePlayer = function(){
                 alienValuesAsign(4);
             }
             for (let alien = 0;alien < aliens.length;alien++){
-                createAliens(aliens[alien]);
+                createAliens(aliens[alien], alienXPos);
             }
             gameContext.beginPath();
             gameContext.moveTo(0, player.y + player.size);
