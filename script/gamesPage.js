@@ -376,6 +376,7 @@ let platformNumber = 0;
 let platformID;
 let enemy = [];
 let enemyNumber = 0;
+let enemiesCreated = false;
 let enemyID;
 let lastX = 1500*3/4;
 let playing = true;
@@ -425,7 +426,6 @@ function enemyCreator(xPosition,yPosition,size){
         size:size
         }
     );
-    enemyNumber += 1;
 }
 
 function enemyDraw(enemyNumber){
@@ -733,8 +733,11 @@ gamePlayer = function(){
             platforms(440,400,400,5);
             platforms(100,500,60,100);
             gameContext.fillStyle='cyan';
-            enemyCreator(280,580,20);
-            enemyCreator(400,500,20);
+            if (enemiesCreated == false){
+                enemyCreator(280,580,20);
+                enemyCreator(400,500,20);
+                enemiesCreated = true;
+            }
             enemyDraw(0);
             enemyDraw(1);
             gameContext.fillStyle ='lime';
