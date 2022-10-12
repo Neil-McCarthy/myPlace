@@ -321,13 +321,13 @@ function alienValuesAsign(rowsOfAliens){
     }
     aliensValuesGiven = true;
 }
-function createAliens(alien){
+function createAliens(alien, alienNumber){
     if (deadAliens.includes(alien)){
         aliens[alien].alive = false;
     }
     alienShots.push({
-    x:alienXPos,
-    y:alienYPos,
+        x:alienXPos + alien.size/2 - 2.5,
+        y:alienYPos - 50,
     size:5,
     fired:0,
     sent:0
@@ -338,33 +338,33 @@ function createAliens(alien){
         alien.dx *= 1.1;
         alien.dx *= -1;
     }
-    // if (alien.x > player.x - 100 && alien.x < player.x + 100){
-    //     alienShotDecider = Math.floor((Math.random() * 1000));
-    //     if (alienShotDecider == 5){
-    //         alienShots[alien].fired = 1;
-    //     }
-    // }
-    // gameContext.fillStyle ='yellow';
-    // if (alienShots[alien].fired == 1 && alienShots[alien].sent == 0 && aliens[alien].alive === true){
-    //     alienShots[alien].x = aliens[alien].x + aliens[alien].size/2 - 2.5;
-    //     alienShots[alien].y = alienYPos + 10;
-    //     gameContext.fillRect(alienShots[alien].x,alienShots[alien].y,alienShots[alien].size,alienShots[alien].size*2);
-    //     alienShots[alien].sent = 1;
-    // }
-    // if (alienShots[alien].fired == 1 && alienShots[alien].sent == 1 && aliens[alien].alive === true){
-    //     alienShots[alien].y += 2;
-    //     gameContext.fillRect(alienShots[alien].x,alienShots[alien].y,alienShots[alien].size,alienShots[alien].size*2);
-    // }
-    // if (collision(alienShots[alien],player,2)){
-    // }   else{
-    //     localStorage.setItem('lastScore',kills);
-    //     playerLastX = player.x;
-    //     playerLastY = player.y;
-    //     player.alive = false;
-    //     player.x = gameWidth/2 - 5;
-    //     explosionSound.play();
-    //     setTimeout(playerRevive, 3000);
-    // }
+    if (alien.x > player.x - 100 && alien.x < player.x + 100){
+        alienShotDecider = Math.floor((Math.random() * 1000));
+        if (alienShotDecider == 5 && alien.alive === true){
+            alienShots[alienNumber].fired = 1;
+        }
+    }
+    gameContext.fillStyle ='yellow';
+    if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 0 && alien.alive === true){
+        alienShots[alienNumber].x = alien.x + alien.size/2 - 2.5;
+        alienShots[alienNumber].y = alienYPos + 10;
+        gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
+        alienShots[alienNumber].sent = 1;
+    }
+    if (alienShots[alienNumber].fired == 1 && alienShots[alienNumber].sent == 1 && alien.alive === true){
+        alienShots[alienNumber].y += 2;
+        gameContext.fillRect(alienShots[alienNumber].x,alienShots[alienNumber].y,alienShots[alienNumber].size,alienShots[alienNumber].size*2);
+    }
+    if (collision(alienShots[alienNumber],player,2)){
+    }   else{
+        localStorage.setItem('lastScore',kills);
+        playerLastX = player.x;
+        playerLastY = player.y;
+        player.alive = false;
+        player.x = gameWidth/2 - 5;
+        explosionSound.play();
+        setTimeout(playerRevive, 3000);
+    }
 //         for (let m = 0;m < blockades.length;m++){
 //             if (collision(alienShots[alien],blockades[m],2)){
 //             }   else{
@@ -649,7 +649,7 @@ gamePlayer = function(){
                 alienValuesAsign(4);
             }
             for (let alien = 0;alien < aliens.length;alien++){
-                createAliens(aliens[alien], alienXPos);
+                createAliens(aliens[alien], alien);
             }
             gameContext.beginPath();
             gameContext.moveTo(0, player.y + player.size);
