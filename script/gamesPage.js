@@ -446,12 +446,14 @@ function enemyJump(n){
 
 
 //>>>SQUAREGAME - JUMP DELAY
-// function jumpDelay(){
-//     setTimeout(() =>{
-//         squaresPlayer.jumping = false;
-//     },1000);
-// }
-
+function jumpDelay(delayTime){
+    let delayCounter = 0;
+    if (delayCounter < delayTime) {
+        delayCounter++;
+    } else {
+        squaresPlayer.jumping = false;
+    }
+}
 //<<<SQUAREGAME - JUMP DELAY
 
 ///
@@ -692,14 +694,14 @@ gamePlayer = function(){
             gameContext.stroke();
         } else if (localStorage.getItem('game') == 1){
             if (controller.up && squaresPlayer.jumping == false){
-            squaresPlayer.dy -= 30;
-            squaresPlayer.jumping = true;
+                squaresPlayer.dy -= 20;
+                squaresPlayer.jumping = true;
             }
             if (controller.left){
-                squaresPlayer.dx -= 2.3;
+                squaresPlayer.dx -= 2;
             }
             if (controller.right){
-                squaresPlayer.dx += 2.3;
+                squaresPlayer.dx += 2;
             }
             squaresPlayer.dy += 2;
             squaresPlayer.x += squaresPlayer.dx;
@@ -710,7 +712,9 @@ gamePlayer = function(){
             if (squaresPlayer.y > gameHeight - 200 - squaresPlayer.size){
                 squaresPlayer.y = gameHeight - 200 - squaresPlayer.size;
                 squaresPlayer.dy = 0;
-                squaresPlayer.jumping = false;
+                if (squaresPlayer.jumping){
+                    jumpDelay(10000);
+                }
             }
             if (squaresPlayer.x < 0){
                 squaresPlayer.dx *= -.8;
