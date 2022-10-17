@@ -149,12 +149,19 @@ main{
     grid-auto-rows: 30em;
     row-gap: 6em;
 }
-#gamesPage main{
+#gamesPage main, #websitesPage main{
     grid-template-columns: repeat(4, 1fr);
     grid-column:1/6;
     grid-row:3/5;
     grid-auto-rows:auto;
     margin:0em 2.5em;
+}
+#websitesPage main{
+    grid-template-columns: repeat(4, 1fr);
+    grid-column:1/6;
+    grid-row:2/3;
+    grid-auto-rows:auto;
+    margin:2.5em;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
