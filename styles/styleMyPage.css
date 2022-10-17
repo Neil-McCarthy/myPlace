@@ -162,10 +162,12 @@ main{
     grid-row:2/3;
     grid-auto-rows:auto;
     margin:2.5em;
+    overflow-x: hidden;
+    transition:1s;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
-main section{
+#homePage main section{
     display:grid;
     grid-template-columns:50% 50%;
     background-color:#eeeeee;
@@ -293,6 +295,65 @@ main section img{
     grid-column:4;
 } */
 /* <<<GAMESPAGE SPECIFIC */
+/* WEBSITEPAGE SPECIFIC>>> */
+#websitesPage main div{
+    grid-column: 1/5;
+    display:grid;
+    text-align: left;
+    grid-template-columns: 50% 50%;
+    background-color: #eeeeee;
+}
+#websitesPage main div h1{
+    margin-left: 5%;
+}
+#websitesPage main div div{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: inline-block;
+    text-align: end;
+}
+#websitesPage main div button{
+    height:100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 2em;
+    transition: .5s;
+}
+#websitesPage main div button:hover{
+    background-color: white;
+}
+#websitesPage main > section{
+    grid-column: 1/5;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    height:50em;
+    transition:1s;
+}
+/* #websitesPage main > section:hover{
+    transition:1s;
+    left:-80%;
+} */
+#websitesPage main > section section{
+    transition:.5s;
+    height:100%;
+    margin-left: 100%;
+}
+#websitesPage main > section section:nth-child(1){
+    background-color: aqua;
+    margin-left: 0;
+    width: 95vw;
+}
+#websitesPage main > section section:nth-child(2){
+    background-color: red;
+}
+#websitesPage main > section section:nth-child(3){
+    background-color: yellow;
+}
+#websitesPage main > section section:nth-child(4){
+    background-color: purple;
+}
+/* <<<WEBSITEPAGE SPECIFICS */
 /* <<<MAIN */
 
 
