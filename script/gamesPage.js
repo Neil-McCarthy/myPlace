@@ -238,9 +238,6 @@ function playerRevive() {
  }
 
  function createAliens(alien){
-    // if (deadAliens.includes(alien)){
-    //     aliens[alien].alive = false;
-    // }
     alienShots.push({
         x:alienXPos + alien.size/2 - 2.5,
         y:alienYPos - 50,
@@ -277,7 +274,6 @@ function playerRevive() {
         playerLastX = player.x;
         playerLastY = player.y;
         player.alive = false;
-        //aliens.splice(alien,1);
         player.x = gameWidth/2 - 5;
         explosionSound.play();
         setTimeout(playerRevive, 3000);
@@ -285,44 +281,15 @@ function playerRevive() {
     if (alienShots[alien.id].y > gameHeight - 100 && aliens[alien.id].alive){
         reload('alien',alien.id);
     }
-//         for (let m = 0;m < blockades.length;m++){
-//             if (collision(alienShots[alien],blockades[m],2)){
-//             }   else{
-//                 reload('alien',alien);
-//                 blockades[m].y = -100;
-//             }
-//             if (collision(shot,blockades[m],3)){
-//             }   else{
-//                 reload('player',0);
-//                 blockades[m].y = -100;
-//             }
-//         }
-//     if (alienShots[alien].y > gameHeight){
-//         reload('alien',alien);
-//     }
-//     if (aliens[alien].y > 600){
-//         localStorage.setItem('lastScore',kills);
-//         gameOver = true;
-//     }
-// //         gameContext.fillRect(aliens[alien].x + aliens[alien].size/2 - 2.5,aliens[alien].y + 10,alienShots[alien].size,alienShots[alien].size*2);
     gameContext.fillStyle ='lime';
     if (alien.alive == true){
         gameContext.fillRect(alien.x,alien.y,alien.size,alien.size);
     }
-//     alienXPos += 50;
-//     if (aliens.length == 10 || aliens.length == 20 || aliens.length == 30 || aliens.length == 40){
-//         alienXPos = 150;
-//         alienYPos += 25;
-//     }
     for (let selectedShot = 0;selectedShot < shotsFired.length; selectedShot++) {
         if (collision(shotsFired[selectedShot],alien,3)){
         } else {
             shotsFired.splice(selectedShot, 1);
             alien.alive = false;
-            // alien.size = 0;
-            // alien.x = 1000;
-            // alien.y = 1000;
-            //alienShots[alien.id].size = 0;
             kills += 1;
             scoreTracker();
             alienExplosion.play();
@@ -332,18 +299,10 @@ function playerRevive() {
  //<<<CREATE ALIENS
  
  function reload(type,alienNumber){
-    // if (type === 'player'){
-    //     shot.x = player.x + player.size*1.5 - 1.75
-    //     shot.y = player.y - player.size;
-    //     shooting = false;
-    //     fired = false;
-    // }
-    // if (type === 'alien'){
         alienShots[alienNumber].x = aliens[alienNumber].x + aliens[alienNumber].size/2 - 2.5;
         alienShots[alienNumber].y = alienYPos + 10;
         alienShots[alienNumber].fired = 0;
         alienShots[alienNumber].sent = 0;
-    // }
 }
 
 //SPACE INVEDERS - CREATE BLOCKADE>>>
@@ -369,32 +328,6 @@ function playerShoot() {
         dy:-5
     })
 }
-
-
-// gameContext.fillStyle ='yellow';
-// if (shooting === false && player.alive){
-//     gameContext.fillRect(player.x + player.size*1.5 - 1.75,player.y - player.size,shot.size,shot.size*3);
-// } else if (shooting === true && fired === false){
-//     shot.x = player.x + player.size*1.5 - 1.75
-//     shot.y = player.y - player.size;
-//     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
-//     fired = true;
-// } else if (shooting === true && fired === true){
-//     shot.y += shot.dy;
-//     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
-// }
-// if (shooting === true && fired === false) {
-//     playerShoot();
-//     fired = true;
-// }
-
-// for (let shotIndex = 0;shotIndex < shotsFired.length;shotIndex++) {
-//     gameContext.fillRect(shotsFired[shotIndex].x,shotsFired[shotIndex].y,shotsFired[shotIndex].size,shotsFired[shotIndex].size*3);
-//     shotsFired[shotIndex].y += shotsFired[shotIndex].dy;
-//     if (shotsFired[shotIndex].y < 0) {
-//         shotsFired.splice(shotIndex, 1);
-//     }
-// }
 //<<<SPACE INVEDERS - CREATE BLOCKADE
 
 ///
@@ -697,27 +630,7 @@ gamePlayer = function(){
                 }
                 }
             }
-            // if (shot.y < - shot.size*3){
-            //     reload('player',0);
-            // }
             gameContext.fillStyle ='yellow';
-            // if (shooting === false && player.alive){
-            //     gameContext.fillRect(player.x + player.size*1.5 - 1.75,player.y - player.size,shot.size,shot.size*3);
-            // } else if (shooting === true && fired === false){
-            //     shot.x = player.x + player.size*1.5 - 1.75
-            //     shot.y = player.y - player.size;
-            //     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
-            //     fired = true;
-            // } else if (shooting === true && fired === true){
-            //     shot.y += shot.dy;
-            //     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
-            // }
-            // if (shooting == true && fired == false) {
-            //     shooting = false;
-            //     fired = true;
-            //     console.log('that');
-            //     playerShoot();
-            // }
             if (fired == true) {
                 reloadCounter++
                 if (reloadCounter == 100) {
