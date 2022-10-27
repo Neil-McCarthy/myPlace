@@ -175,6 +175,7 @@ let blockades = [];
 let blockadeBlock = 0
 let blockadeCount = 0;
 let blockStartPoint;
+let blockadesCreated = false;
 let kills = 0;
 let flames = [];
 let shotsFired = [];
@@ -227,7 +228,14 @@ function playerRevive() {
             size:20,
             dx:alienSpeed,
             alive:true
-         })
+         });
+         alienShots.push({
+            x:alienXPos + alien.size/2 - 2.5,
+            y:alienYPos - 50,
+            size:5,
+            fired:0,
+            sent:0
+        });
          if (aliens.length % 10) {
              alienXPos += 50;
          } else {
@@ -238,13 +246,6 @@ function playerRevive() {
  }
 
  function createAliens(alien){
-    alienShots.push({
-        x:alienXPos + alien.size/2 - 2.5,
-        y:alienYPos - 50,
-        size:5,
-        fired:0,
-        sent:0
-    })
     alien.x += alien.dx;
     if (alien.x > gameWidth - 100 || alien.x < 100){
         alien.y += 25;
@@ -271,8 +272,6 @@ function playerRevive() {
     if (collision(alienShots[alien.id],player,2)){
     }   else{
         localStorage.setItem('lastScore',kills);
-        playerLastX = player.x;
-        playerLastY = player.y;
         player.alive = false;
         player.x = gameWidth/2 - 5;
         explosionSound.play();
@@ -313,10 +312,10 @@ function createBlockade(blockadeXPosition){
         blockades.push({
             x:blockadeXPosition,
             y:650,
-            size:10
+            size:10,
+            damaged:false
         })
         blockadeXPosition += 10
-        gameContext.fillRect(blockades[blockadeBlock].x,blockades[blockadeBlock].y,blockades[blockadeBlock].size,blockades[blockadeBlock].size);
     }
 }
 
@@ -651,10 +650,23 @@ gamePlayer = function(){
                 gameContext.fillRect(player.x + player.size*1.5 - 2.5,player.y - player.size, shooter.size, shooter.size*3);
             }
             gameContext.fillStyle = 'red';
-            createBlockade(150);
-            createBlockade(350);
-            createBlockade(550);
-            createBlockade(750);
+            if (!blockadesCreated){
+                createBlockade(150);
+                createBlockade(350);
+                createBlockade(550);
+                createBlockade(750);
+                blockadesCreated = true;
+            }
+            for (let blockadeBlock = 0;blockadeBlock < blockades.length;blockadeBlock++) {
+                if (!blockades[blockadeBlock].damaged) {
+                    gameContext.fillRect(blockades[blockadeBlock].x,blockades[blockadeBlock].y,blockades[blockadeBlock].size,blockades[blockadeBlock].size);
+                }
+                // for (let selectedShot = 0;selectedShot < shotsFired.length;selectedShot++) {
+                //     if (!collision(shotsFired[selectedShot],blockades[blockadeBlock],3)) {
+                //         blockades[blockadeBlock].damaged = true;
+                //     }
+                // }
+            }
             gameContext.fillStyle = 'lime';
             if (aliensValuesGiven == false){
                 alienValuesAsign(4);
