@@ -177,6 +177,8 @@ let blockadeCount = 0;
 let blockStartPoint;
 let kills = 0;
 let flames = [];
+let shotsFired = [];
+let reloadCounter = 0;
 let explosionSound = new Audio('../audio/Explosion11.m4a');
 explosionSound.volume = .5;
 let alienExplosion = new Audio('../audio/alienExplosion.wav');
@@ -278,7 +280,7 @@ function playerRevive() {
          explosionSound.play();
          setTimeout(playerRevive, 3000);
      }
-     if (alienShots[alienNumber].y > gameHeight){
+     if (alienShots[alienNumber].y > gameHeight - 100){
          reload('alien',alienNumber);
      }
  //         for (let m = 0;m < blockades.length;m++){
@@ -310,19 +312,20 @@ function playerRevive() {
  //         alienXPos = 150;
  //         alienYPos += 25;
  //     }
-     if (collision(shot,alien,3)){
-     } else {
-         //deadAliens.push(alienNumber);
-         alien.alive === false;
-         alien.size = 0;
-         alien.x = 400;
-         alien.y = -50;
-         alienShots[alienNumber].size = 0;
-         reload('player',0);
-         kills += 1;
-         scoreTracker();
-         alienExplosion.play();
-     }
+    for (let selectedShot = 0;selectedShot < shotsFired.length; selectedShot++) {
+        if (collision(shotsFired[selectedShot],alien,3)){
+        } else {
+            shotsFired.splice(selectedShot, 1);
+            alien.alive === false;
+            alien.size = 0;
+            alien.x = 400;
+            alien.y = -50;
+            alienShots[alienNumber].size = 0;
+            kills += 1;
+            scoreTracker();
+            alienExplosion.play();
+        }
+    }
  }
  //<<<CREATE ALIENS
  
@@ -355,6 +358,41 @@ function createBlockade(blockadeXPosition){
         gameContext.fillRect(blockades[blockadeBlock].x,blockades[blockadeBlock].y,blockades[blockadeBlock].size,blockades[blockadeBlock].size);
     }
 }
+
+function playerShoot() {
+    shotsFired.push({
+        x:player.x + player.size*1.5 - 1.75,
+        y:player.y - player.size,
+        size:2.5,
+        dy:-5
+    })
+}
+
+
+// gameContext.fillStyle ='yellow';
+// if (shooting === false && player.alive){
+//     gameContext.fillRect(player.x + player.size*1.5 - 1.75,player.y - player.size,shot.size,shot.size*3);
+// } else if (shooting === true && fired === false){
+//     shot.x = player.x + player.size*1.5 - 1.75
+//     shot.y = player.y - player.size;
+//     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
+//     fired = true;
+// } else if (shooting === true && fired === true){
+//     shot.y += shot.dy;
+//     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
+// }
+// if (shooting === true && fired === false) {
+//     playerShoot();
+//     fired = true;
+// }
+
+// for (let shotIndex = 0;shotIndex < shotsFired.length;shotIndex++) {
+//     gameContext.fillRect(shotsFired[shotIndex].x,shotsFired[shotIndex].y,shotsFired[shotIndex].size,shotsFired[shotIndex].size*3);
+//     shotsFired[shotIndex].y += shotsFired[shotIndex].dy;
+//     if (shotsFired[shotIndex].y < 0) {
+//         shotsFired.splice(shotIndex, 1);
+//     }
+// }
 //<<<SPACE INVEDERS - CREATE BLOCKADE
 
 ///
@@ -622,8 +660,10 @@ gamePlayer = function(){
                 if (controller.right){
                     player.dx += 1.5;
                 }
-                if (controller.up){
-                    shooting = true;
+                if (controller.up && fired == false){
+                    fired = true;
+                    console.log('that');
+                    playerShoot();
                 }
                 if (player.x < 0){
                     player.x = 0;
@@ -655,20 +695,40 @@ gamePlayer = function(){
                 }
                 }
             }
-            if (shot.y < - shot.size*3){
-                reload('player',0);
-            }
+            // if (shot.y < - shot.size*3){
+            //     reload('player',0);
+            // }
             gameContext.fillStyle ='yellow';
-            if (shooting === false && player.alive){
-                gameContext.fillRect(player.x + player.size*1.5 - 1.75,player.y - player.size,shot.size,shot.size*3);
-            } else if (shooting === true && fired === false){
-                shot.x = player.x + player.size*1.5 - 1.75
-                shot.y = player.y - player.size;
-                gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
-                fired = true;
-            } else if (shooting === true && fired === true){
-                shot.y += shot.dy;
-                gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
+            // if (shooting === false && player.alive){
+            //     gameContext.fillRect(player.x + player.size*1.5 - 1.75,player.y - player.size,shot.size,shot.size*3);
+            // } else if (shooting === true && fired === false){
+            //     shot.x = player.x + player.size*1.5 - 1.75
+            //     shot.y = player.y - player.size;
+            //     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
+            //     fired = true;
+            // } else if (shooting === true && fired === true){
+            //     shot.y += shot.dy;
+            //     gameContext.fillRect(shot.x,shot.y,shot.size,shot.size*3);
+            // }
+            // if (shooting == true && fired == false) {
+            //     shooting = false;
+            //     fired = true;
+            //     console.log('that');
+            //     playerShoot();
+            // }
+            if (fired == true) {
+                reloadCounter++
+                if (reloadCounter == 100) {
+                    fired = false;
+                    reloadCounter = 0;
+                }
+            }
+            for (let shotIndex = 0;shotIndex < shotsFired.length;shotIndex++) {
+                gameContext.fillRect(shotsFired[shotIndex].x,shotsFired[shotIndex].y,shotsFired[shotIndex].size,shotsFired[shotIndex].size*3);
+                shotsFired[shotIndex].y += shotsFired[shotIndex].dy;
+                if (shotsFired[shotIndex].y < 0) {
+                    shotsFired.splice(shotIndex, 1);
+                }
             }
             if (player.alive){
                 gameContext.fillStyle ='red';
