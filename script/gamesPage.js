@@ -238,9 +238,9 @@ function playerRevive() {
  }
 
  function createAliens(alien){
-    if (deadAliens.includes(alien)){
-        aliens[alien].alive = false;
-    }
+    // if (deadAliens.includes(alien)){
+    //     aliens[alien].alive = false;
+    // }
     alienShots.push({
         x:alienXPos + alien.size/2 - 2.5,
         y:alienYPos - 50,
@@ -251,7 +251,7 @@ function playerRevive() {
     alien.x += alien.dx;
     if (alien.x > gameWidth - 100 || alien.x < 100){
         alien.y += 25;
-        alien.dx *= 1.2;
+        alien.dx *= 1.15;
         alien.dx *= -1;
     }
     if (alien.x > player.x - 100 && alien.x < player.x + 100){
@@ -263,7 +263,7 @@ function playerRevive() {
     gameContext.fillStyle ='yellow';
     if (alienShots[alien.id].fired == 1 && alienShots[alien.id].sent == 0 && alien.alive === true){
         alienShots[alien.id].x = alien.x + alien.size/2 - 2.5;
-        alienShots[alien.id].y = alienYPos + 10;
+        alienShots[alien.id].y = alien.y + 10;
         gameContext.fillRect(alienShots[alien.id].x,alienShots[alien.id].y,alienShots[alien.id].size,alienShots[alien.id].size*2);
         alienShots[alien.id].sent = 1;
     }
@@ -306,7 +306,7 @@ function playerRevive() {
 //     }
 // //         gameContext.fillRect(aliens[alien].x + aliens[alien].size/2 - 2.5,aliens[alien].y + 10,alienShots[alien].size,alienShots[alien].size*2);
     gameContext.fillStyle ='lime';
-    if (alien.alive === true){
+    if (alien.alive == true){
         gameContext.fillRect(alien.x,alien.y,alien.size,alien.size);
     }
 //     alienXPos += 50;
@@ -318,11 +318,11 @@ function playerRevive() {
         if (collision(shotsFired[selectedShot],alien,3)){
         } else {
             shotsFired.splice(selectedShot, 1);
-            alien.alive === false;
-            alien.size = 0;
-            alien.x = 400;
-            alien.y = -50;
-            alienShots[alien.id].size = 0;
+            alien.alive = false;
+            // alien.size = 0;
+            // alien.x = 1000;
+            // alien.y = 1000;
+            //alienShots[alien.id].size = 0;
             kills += 1;
             scoreTracker();
             alienExplosion.play();
@@ -332,18 +332,18 @@ function playerRevive() {
  //<<<CREATE ALIENS
  
  function reload(type,alienNumber){
-    if (type === 'player'){
-        shot.x = player.x + player.size*1.5 - 1.75
-        shot.y = player.y - player.size;
-        shooting = false;
-        fired = false;
-    }
-    if (type === 'alien'){
+    // if (type === 'player'){
+    //     shot.x = player.x + player.size*1.5 - 1.75
+    //     shot.y = player.y - player.size;
+    //     shooting = false;
+    //     fired = false;
+    // }
+    // if (type === 'alien'){
         alienShots[alienNumber].x = aliens[alienNumber].x + aliens[alienNumber].size/2 - 2.5;
         alienShots[alienNumber].y = alienYPos + 10;
         alienShots[alienNumber].fired = 0;
         alienShots[alienNumber].sent = 0;
-    }
+    // }
 }
 
 //SPACE INVEDERS - CREATE BLOCKADE>>>
