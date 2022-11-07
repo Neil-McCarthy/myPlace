@@ -266,7 +266,7 @@ function playerRevive() {
         alienShots[alien.id].sent = 1;
     }
     if (alienShots[alien.id].fired == 1 && alienShots[alien.id].sent == 1 && alien.alive === true){
-        alienShots[alien.id].y += 2;
+        alienShots[alien.id].y += 4;
         gameContext.fillRect(alienShots[alien.id].x,alienShots[alien.id].y,alienShots[alien.id].size,alienShots[alien.id].size*2);
     }
     if (collision(alienShots[alien.id],player,2)){
@@ -589,10 +589,10 @@ gamePlayer = function(){
             gameContext.clearRect(0, 0, gameWidth, gameHeight);
             if (player.alive){
                 if (controller.left){
-                    player.dx -= 1.5;
+                    player.dx -= 1.2;
                 }
                 if (controller.right){
-                    player.dx += 1.5;
+                    player.dx += 1.2;
                 }
                 if (controller.up && fired == false){
                     fired = true;
