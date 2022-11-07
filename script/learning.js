@@ -32,12 +32,19 @@ const learningData = [
     }
 ]
 
+function delay() {
+    return new Promise(resolve => setTimeout(resolve, 750));
+}
 for (let singleIcon = 0;singleIcon < languagesIconList.length;singleIcon++) {
-    languagesIconList[singleIcon].onclick = () => {
+    languagesIconList[singleIcon].onclick = async () => {
+        document.getElementById("learningDisplay").style.opacity = 0;
+        delay().then(() => {
         learningDisplaySections[0].getElementsByTagName("h1")[0].innerHTML = learningData[singleIcon].name;
         learningDisplaySections[0].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].overview;
         learningDisplaySections[1].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].level;
         learningDisplaySections[2].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].implementation;
         learningDisplaySections[3].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].futurePlans;
+        document.getElementById("learningDisplay").style.opacity = 1;
+        });
     };
 }

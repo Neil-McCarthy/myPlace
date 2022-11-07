@@ -157,6 +157,7 @@ main{
     margin:0em 2.5em;
 }
 #websitesPage main{
+    background-color:#eeeeee;
     grid-template-columns: repeat(4, 1fr);
     grid-column:1/6;
     grid-row:2/3;
@@ -405,6 +406,7 @@ main section img{
     height:30em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    transition:.5s;
 }
 #learningDisplay section{
     background-color: #eeeeee;
