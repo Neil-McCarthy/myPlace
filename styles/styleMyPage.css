@@ -165,6 +165,10 @@ main{
     overflow-x: hidden;
     transition:1s;
 }
+#learning main{
+    width: 95vw;
+    margin-left:2.%;
+}
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
 #homePage main section{
@@ -369,6 +373,34 @@ main section img{
     width: 100vw;
 }
 /* <<<WEBSITEPAGE SPECIFICS */
+/* LEARNING SPECIFICS>>> */
+#learning main span{
+    max-height: 15em;
+    max-width: 95vw;
+    background-color: #eeeeee;
+    border-bottom: #000 solid;
+}
+#learning main span ul{
+    list-style: none;
+    width: 100%;
+}
+#learning main span li{
+    display: inline-block;
+    width: 10%;
+    overflow: hidden;
+    margin-right: 5%;
+}
+#learning main span img{
+    width: 100%;
+    height: auto;
+    margin:5%;
+    transition:.5s
+}
+#learning main span img:hover{
+    cursor: pointer;
+    margin:0;
+}
+/* <<<LEARNING SPECIFICS */
 /* <<<MAIN */
 
 
