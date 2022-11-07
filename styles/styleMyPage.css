@@ -391,7 +391,7 @@ main section img{
     margin-right: 5%;
 }
 #learning main span img{
-    width: 100%;
+    width: 90%;
     height: auto;
     margin:5%;
     transition:.5s
@@ -399,6 +399,13 @@ main section img{
 #learning main span img:hover{
     cursor: pointer;
     margin:0;
+}
+#learningDisplay{
+    background-color: #eeeeee;
+    width: 100%;
+    height:20em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 /* <<<LEARNING SPECIFICS */
 /* <<<MAIN */
