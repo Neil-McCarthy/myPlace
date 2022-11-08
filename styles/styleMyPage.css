@@ -194,7 +194,7 @@ main{
 #homePage main section:first-child h1,#homePage main section:first-child p{
     grid-column:1/3;
 }
-main section:first-child p{
+#homePage main section:first-child p{
     margin:2em;
 }
 #homePage main section:nth-child(2),#homePage main section:nth-child(4){
