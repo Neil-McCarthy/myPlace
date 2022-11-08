@@ -380,14 +380,15 @@ main{
 }
 #websitesPage main img{
     display: block;
-    width:100%;
+    width:90%;
     height:auto;
-    margin:auto;
-    margin-top: 2em;
+    margin: auto;
     opacity:0;
     transition:.5s;
     grid-column: 1/2;
     grid-row: 1/2;
+    border-radius: 1em 1em 1em 1em;
+    box-shadow: 0.3em 0.3em 0.3em;
 }
 #websitesPage main > section article:nth-child(1){
     margin-left: 0;
