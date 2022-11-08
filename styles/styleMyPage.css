@@ -217,7 +217,7 @@ main section:first-child p{
     height: 25%;
     margin-top: 0;
 }
-main section img{
+#homePage main section img{
     width:80%;
     height:auto;
     transition:1s;
@@ -227,7 +227,7 @@ main section img{
     opacity:0;
 }
 .visible{
-    opacity:1;
+    opacity:1 !important;
 }
 .invisible{
     opacity:0;
@@ -363,6 +363,10 @@ main section img{
 #websitesPage main article section:nth-of-type(2){
     text-align: left;
 }
+#websitesPage main article section:nth-of-type(3){
+    grid-column: 2/3;
+    grid-row: 2/4;
+}
 #websitesPage main article section:nth-of-type(2) ul,#websitesPage main article section:nth-of-type(2) h1{
     margin-top:1.5em;
 }
@@ -371,6 +375,15 @@ main section img{
 }
 #websitesPage main > section article p{
     grid-column: 1/2;
+}
+#websitesPage main img{
+    display: block;
+    width:60%;
+    height:auto;
+    margin:auto;
+    margin-top: 2em;
+    opacity:0;
+    transition:.5s;
 }
 #websitesPage main > section article:nth-child(1){
     margin-left: 0;

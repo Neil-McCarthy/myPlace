@@ -5,15 +5,19 @@ for (let buttonPressed = 0;buttonPressed < websiteChangeButtons.length;buttonPre
     websiteChangeButtons[buttonPressed].onclick = () => {
         if (buttonPressed == 0 && websiteBeingDisplayed != 0) {
             websiteArticleList[websiteBeingDisplayed].style.marginLeft = '100%';
+            websiteArticleList[websiteBeingDisplayed].classList.remove('display');
             websiteArticleList[websiteBeingDisplayed - 1].style.width = '100vw';
             websiteArticleList[websiteBeingDisplayed - 1].style.opacity = 1;
+            websiteArticleList[websiteBeingDisplayed - 1].classList.add('display');
             websiteBeingDisplayed--;
         }
         else if (buttonPressed == 1 && websiteBeingDisplayed != websiteArticleList.length -1) {
             websiteArticleList[websiteBeingDisplayed].style.width = 0;
             websiteArticleList[websiteBeingDisplayed].style.opacity = 0;
+            websiteArticleList[websiteBeingDisplayed].classList.remove('display');
             websiteArticleList[websiteBeingDisplayed + 1].style.width = '100vw';
             websiteArticleList[websiteBeingDisplayed + 1].style.marginLeft = 0;
+            websiteArticleList[websiteBeingDisplayed + 1].classList.add('display');
             websiteBeingDisplayed++;
         }
         if (websiteBeingDisplayed == 0) {
@@ -26,3 +30,28 @@ for (let buttonPressed = 0;buttonPressed < websiteChangeButtons.length;buttonPre
         }
     }
 }
+let imageChangeTime,currentImage,nextImage;
+
+function imageChanger(listOfSections){
+    imageChangeTime = setTimeout(function(){
+        for (let singleArticle = 0;singleArticle < listOfSections.length;singleArticle++) {
+            if (listOfSections[singleArticle].classList.contains('display')){
+                for (let singleImage = 0;singleImage < listOfSections[singleArticle].getElementsByTagName("img").length;singleImage++) {
+                    if (listOfSections[singleArticle].getElementsByTagName("img")[singleImage].classList.contains('visible')) {
+                        currentImage = singleImage;
+                    }
+                }
+                if (currentImage == listOfSections[singleArticle].getElementsByTagName("img").length - 1) {
+                    nextImage = 0;
+                } else {
+                    nextImage = currentImage + 1;
+                }
+                listOfSections[singleArticle].getElementsByTagName("img")[currentImage].classList.remove('visible');
+                listOfSections[singleArticle].getElementsByTagName("img")[nextImage].classList.add('visible');
+            }
+        }
+        imageChanger(listOfSections)
+    },4000);
+}
+
+imageChanger(websiteArticleList);
