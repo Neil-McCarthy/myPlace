@@ -51,7 +51,7 @@ function imageChanger(listOfSections){
             }
         }
         imageChanger(listOfSections)
-    },4000);
+    },5000);
 }
 
 imageChanger(websiteArticleList);
