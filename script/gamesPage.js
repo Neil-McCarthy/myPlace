@@ -1,10 +1,8 @@
 //GENERAL>>>
 let canvas,width,height,context,draw,mouseX,mouseY,main;
 let body = document.querySelector("body");
-let mainSections = [];
-let objects = [];
 main = document.querySelector("main");
-mainSections = main.getElementsByTagName("section");
+let mainSections = main.getElementsByTagName("section");
 //<<GENERAL
 
 
@@ -1488,13 +1486,13 @@ gamePlayer = function(){
             }
             boundaryCollision(pacman);
             for(let ghostCount = 0;ghostCount<4;ghostCount++){
+                boundaryCollision(ghostTracker[ghostCount]);
                 if (ghostTracker[ghostCount].x == 500 && ghostTracker[ghostCount].y == 252.5){
                     ghostTracker[ghostCount].collideDown = true;
                 }
                 if (ghostTracker[ghostCount].x == 500 && ghostTracker[ghostCount].y == 312.5){
                     ghostTracker[ghostCount].direction = 'up';
                 }
-                boundaryCollision(ghostTracker[ghostCount]);
                 if (ghostTracker[ghostCount].collideTop == false && (ghostTracker[ghostCount].direction == 'up' || ghostTracker[ghostCount].nextDirection == 'up')){
                     ghostTracker[ghostCount].dx = 0;
                     ghostTracker[ghostCount].dy = 0;
