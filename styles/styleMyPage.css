@@ -35,7 +35,7 @@ body{
 /* HEADER>>> */
 header{
     grid-column:1/6;
-    height:58em;
+    height:95vh;
     margin:3em 0;
     box-shadow:0em .5em .7em;
 }
@@ -146,7 +146,7 @@ main{
     grid-template-columns: repeat(5, 1fr);
     grid-column:1/6;
     grid-row:2/4;
-    grid-auto-rows: 30em;
+    grid-auto-rows: 50vh;
     row-gap: 6em;
 }
 #gamesPage main, #websitesPage main{
@@ -549,6 +549,17 @@ main canvas{
 }
 /* <<<CANVAS */
 
+
+/* DIFFERNT SCREEN SIZES>>> */
+@media only screen and (max-width: 1280px) {
+    #homePage main section:nth-child(2),#homePage main section:nth-child(4){
+        grid-column: 2/6;
+    }
+    #homePage main section:nth-child(3),#homePage main section:nth-child(5){
+        grid-column: 1/5;
+    }
+}
+/* <<<DIFFERENT SCREEN SIZES */
 
 /* TO DELETE>>> */
 
