@@ -291,28 +291,28 @@ main.addEventListener("mouseleave", function(){
 
 
 function scrollIn () {
-    if (this.scrollY > 1050 && sectionCounter < 1){
+    if (this.scrollY > 1000 && sectionCounter < 1){
         scrollCaller(mainSections[1])
     }
-    if (this.scrollY < 1050 && sectionCounter > 0){
+    if (this.scrollY < 1000 && sectionCounter > 0){
         scrollRemover(mainSections[1])
     }
-    if (this.scrollY > 1550 && sectionCounter < 2){
+    if (this.scrollY > 1500 && sectionCounter < 2){
         scrollCaller(mainSections[2])
     }
-    if (this.scrollY < 1550 && sectionCounter > 1){
+    if (this.scrollY < 1500 && sectionCounter > 1){
         scrollRemover(mainSections[2])
     }
-    if (this.scrollY > 2050 && sectionCounter < 3){
+    if (this.scrollY > 2000 && sectionCounter < 3){
         scrollCaller(mainSections[3])
     }
-    if (this.scrollY < 2050 && sectionCounter > 2){
+    if (this.scrollY < 2000 && sectionCounter > 2){
         scrollRemover(mainSections[3])
     }
-    if (this.scrollY > 2550 && sectionCounter < 4){
+    if (this.scrollY > 2500 && sectionCounter < 4){
         scrollCaller(mainSections[4])
     }
-    if (this.scrollY < 2550 && sectionCounter > 3){
+    if (this.scrollY < 2500 && sectionCounter > 3){
         scrollRemover(mainSections[4])
     }
 }
