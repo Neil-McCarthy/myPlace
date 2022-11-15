@@ -147,7 +147,7 @@ main{
     grid-template-columns: repeat(5, 1fr);
     grid-column:1/6;
     grid-row:2/4;
-    grid-auto-rows: 50vh;
+    grid-auto-rows: 47.5vh;
     row-gap: 6em;
 }
 #gamesPage main, #websitesPage main{
