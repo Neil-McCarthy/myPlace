@@ -5,7 +5,8 @@ const learningData = [
     {
         name: "JavaScript",
         overview: `When I was learning JavaScript in college for the first time I remember thinking, when will I ever use this clunky backwards language? Now I can't imagine making anything without it. What was once double Dutch
-        has now become the best means for me to get what I have in my head onto a website. It's an incredibly functional language and, while it's not flawless, it feels near limitless in what it allows you to do.`,
+        has now become the best means for me to get what I have in my head onto a website. It's an incredibly functional language and, while it's not flawless, it feels near limitless in what it allows you to do and I
+        now thoroughly enjoy using it on a daily basis.`,
         level: `I've been using this language for years now and every few weeks I feel as if I'm close to mastering it, only to find some new extension of JavaScript that I'd never heard of or a new and better way of doing
         somthing that puts my code to shame. But I think that's fantastic, knowing that there's still so much to do and learn with this language. It's like reading your favourite book and every time you get close to the end
         another 10 chapters appear out of nowhere.\nI'd be confident enough to say that I'm past the beginning stages of this language. My code is clearer, more concise, and more trimmed down. I'm more able to create whatever
@@ -24,7 +25,11 @@ const learningData = [
     },
     {
         name: "React",
-        overview: "Overview of react",
+        overview: `The first time I started using React I thought, "What a useless waste of time?". I had already been creating and updating elements live through vanilla
+        JavaScript, I could write a function that could create multiple elements on the fly, so what did React have to offer? Then I shut up and slowly realised just how
+        amazing React actually is to use. Suddenly what used to take dozens of lines of code that was difficult to read, had become only a few lines that were simple to
+        understand. Has completely changed my approach to front-end development.\nAlthough I'm still little more than a novice, I'm looking forward to seeing what else 
+        React has to offer.`,
         level: "level of react",
         implementation: "what you've done with react",
         futurePlans: "what you hope to do with react"
