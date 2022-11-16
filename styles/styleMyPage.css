@@ -307,6 +307,12 @@ main{
     margin:auto;
     margin-top:.5em;
 }
+#gamesPage main img{
+    position: absolute;
+    top:50%;
+    left:45%;
+    width:10%;
+}
 /* #gameHistory{
     grid-row:2;
     grid-column:1;

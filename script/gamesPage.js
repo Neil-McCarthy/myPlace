@@ -3,6 +3,7 @@ let canvas,width,height,context,draw,mouseX,mouseY,main;
 let body = document.querySelector("body");
 main = document.querySelector("main");
 let mainSections = main.getElementsByTagName("section");
+let playImage = main.getElementsByTagName("img")[0];
 //<<GENERAL
 
 
@@ -43,6 +44,7 @@ let playerChanger = document.getElementById("playerChanger");
 let screenLocked = false;
 let pause = document.getElementById("pause");
 let paused = false;
+let pauseDisplay = false;
 let gameHistory = document.getElementById("gameHistory");
 let keyBindings = document.getElementById("keyBindings");
 
@@ -62,12 +64,22 @@ screenLock.onclick = function screenLocker(){
 pause.onclick = function gamePauser(){
     if (paused == false){
         paused = true;
+        playImage.style.zIndex = 0;
     } else{
         paused = false;
+        playImage.style.zIndex = -1;
     }
     window.requestAnimationFrame(gamePlayer);
 }
 //<<<SCREEN LOCK INSTRUCTION
+
+//PLAY IMAGE>>>
+playImage.onclick = () => {
+    paused = false;
+    playImage.style.zIndex = -1;
+    window.requestAnimationFrame(gamePlayer);
+}
+//<<<PLAY IMAGE
 //<<<EXTRA GAME WINDOWS
 
 
@@ -936,6 +948,10 @@ function platformCollision(){
 
 gamePlayer = function(){
     if (paused == false){
+        if (pauseDisplay == false){
+            paused = true;
+            pauseDisplay = true;
+        }
         if (localStorage.getItem('game') == 0){
             gameContext.clearRect(0, 0, gameWidth, gameHeight);
             if (player.alive){
