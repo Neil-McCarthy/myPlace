@@ -140,40 +140,40 @@ nav li:hover #dropDown{
 /* GENERAL>>> */
 main{
     background-color:rgba(65, 74, 76,0);
-    margin: 1.5em;
     display:grid;
     font-family: 'caudex';
+    grid-column:1/6;
+    margin:0;
+    overflow: hidden;
 }
 #homePage main{
     grid-template-columns: repeat(5, 1fr);
-    grid-column:1/6;
     grid-row:2/4;
     grid-auto-rows: 30em;
     row-gap: 6em;
+    margin: 1.5em;
 }
-#gamesPage main, #websitesPage main{
-    background-color: #eeeeee;
+#gamesPage main{
     grid-template-columns: repeat(4, 1fr);
-    grid-column:1/6;
-    grid-row:3/5;
-    grid-auto-rows:auto;
-    margin:0em 2.5em;
+    margin:2em;
+    padding-bottom: 1em;
+    border-radius: 1em 1em 1em 1em;
 }
 #websitesPage main{
-    background-color:#eeeeee;
     grid-template-columns: repeat(4, 1fr);
-    grid-column:1/6;
-    grid-row:1/2;
-    grid-auto-rows:auto;
-    margin:0;
-    margin-top:8em;
     overflow-x: hidden;
     transition:1s;
 }
 #learning main{
     width: 95vw;
-    margin-left:2%;
-    background-color:#eeeeee;
+    margin:2%;
+    border-radius: 1em 1em 1em 1em;
+}
+#gamesPage main, #websitesPage main, #learning main{
+    background-color: #eeeeee;
+    grid-row:1/2;
+    grid-auto-rows:auto;
+    margin-top:8em;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
@@ -256,12 +256,12 @@ main{
 /* <<<HOMEPAGE SPECIFIC */
 /* GAMESPAGE SPECIFIC>>> */
 #gamesPage main ul{
-    background-color: #303841;
+    background-color: #eeeeee;
     grid-column:1/5;
     height:2.5em;
     transition:.5;
     list-style: none;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
 #gamesPage main ul li{
     width:10%;
@@ -270,7 +270,8 @@ main{
 }
 #gamesPage main ul button{
     background-color: #eeeeee;
-    color: #3a4750;
+    font-family: 'caudex';
+    font-size: 110%;
     width:100%;
     padding:0;
     height:100%;
