@@ -28,7 +28,7 @@ body{
     text-align:center;
     grid-template-columns:repeat(5, 1fr);
     grid-auto-rows:auto;
-    background-color: #303841;
+    background-color: #041c32;
 }
 /* <<<BODY */
 
@@ -45,7 +45,7 @@ header div{
     top:30%;
     left:25%;
     width:50%;
-    background-color:salmon;
+    background-color:#ffcc33;
     padding:2em;
     border-radius:1em 1em 1em 1em;
     transition:.9s;
@@ -53,7 +53,7 @@ header div{
     /* opacity:0; */
 }
 header div:hover{
-    background-color: salmon;
+    background-color: #ffcc33;
     opacity: 1;
 }
 header div:hover h1{
@@ -83,7 +83,7 @@ nav{
     height:3em;
     top:0;
     left:0;
-    background-image: linear-gradient(to right, #303841 , salmon);
+    background-image: linear-gradient(to right, #041c32 , #ffcc33);
     box-shadow:-.2em .5em 1em;
     z-index:2;
 }
@@ -102,8 +102,8 @@ nav ul li{
 nav ul a{
     font-size:120%;
     font-family: 'Staatliches', cursive;
-    background-color:salmon;
-    color: #303841;
+    background-color:#ffcc33;
+    color: #041c32;
     height:100%;
     width:100%;
     display:inline-block;
@@ -114,9 +114,13 @@ nav ul ul li{
     display: block;
 }
 nav ul a:hover{
-    background-color:#eeeeee;
-    color: #3a4750;
+    background-color:ghostwhite;
+    color: #041c32;
     transition:.5s;
+}
+.currentLocation{
+    background-color:ghostwhite;
+    color: #041c32;
 }
 nav ul ul{
     top:100%;
@@ -144,7 +148,6 @@ main{
     font-family: 'caudex';
     grid-column:1/6;
     margin:0;
-    overflow: hidden;
 }
 #homePage main{
     grid-template-columns: repeat(5, 1fr);
@@ -170,10 +173,11 @@ main{
     border-radius: 1em 1em 1em 1em;
 }
 #gamesPage main, #websitesPage main, #learning main{
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     grid-row:1/2;
     grid-auto-rows:auto;
     margin-top:8em;
+    overflow: hidden;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
@@ -184,7 +188,7 @@ main{
     opacity:.85;
     display:grid;
     grid-template-columns:50% 50%;
-    background-color:#eeeeee;
+    background-color:ghostwhite;
     color: #3a4750;
     transition:.5s;
     overflow: hidden;
@@ -226,7 +230,7 @@ main{
     grid-column:1/2;
 }
 #homePage main h1{
-    background-color: salmon;
+    background-color: #ffcc33;
     color: #3a4750;
     height: 2em;
     margin-top: 0;
@@ -256,7 +260,7 @@ main{
 /* <<<HOMEPAGE SPECIFIC */
 /* GAMESPAGE SPECIFIC>>> */
 #gamesPage main ul{
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     grid-column:1/5;
     height:2.5em;
     transition:.5;
@@ -269,7 +273,7 @@ main{
     display: inline-block;
 }
 #gamesPage main ul button{
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     font-family: 'caudex';
     font-size: 110%;
     width:100%;
@@ -325,7 +329,7 @@ main{
     display:grid;
     text-align: left;
     grid-template-columns: 50% 50%;
-    background-color: #eeeeee;
+    background-color: ghostwhite;
 }
 #websitesPage main div h1{
     margin-left: 5%;
@@ -348,7 +352,7 @@ main{
     opacity:0;
 }
 #websitesPage main div button:hover{
-    background-color: white;
+    background-color: ghostwhite;
 }
 #websitesPage main > section{
     grid-column: 1/5;
@@ -359,7 +363,7 @@ main{
     left:-100vw;
 }
 #websitesPage main article{
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     height:50em;
     margin-left: 100%;
     transition:.5s;
@@ -412,7 +416,7 @@ main{
 #learning main span{
     max-height: 15em;
     max-width: 95vw;
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     border-bottom: #000 solid;
 }
 #learning main span ul{
@@ -443,7 +447,7 @@ main{
     transition:.5s;
 }
 #learningDisplay section{
-    background-color: #eeeeee;
+    background-color: ghostwhite;
     margin: 2em;
 }
 /* <<<LEARNING SPECIFICS */
@@ -456,14 +460,14 @@ aside{
     grid-column:1/6;
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    background-color:#eeeeee;
+    background-color:ghostwhite;
     color: #3a4750;
     transition:.5s;
     font-family: 'caudex';
     font-size: 110%;
 }
 aside h1{
-    background-color:gold;
+    background-color:#ffcc33;
     color: #3a4750;
     padding: .5em 0;
 }
@@ -485,11 +489,11 @@ aside img{
     transition:.3s;
 }
 aside a{
-    transition: .5s;
+    transition: .3s;
 }
 aside a:hover{
-    background-color:#3a4750;
-    color: #eeeeee;
+    background-color:#041c32;
+    color: ghostwhite;
 }
 /* <<<GENERAL */
 /* HOMEPAGE SPECIFIC>>> */
@@ -513,8 +517,8 @@ footer{
     grid-column:1/6;
     grid-row:4/5;
     text-align: center;
-    background-image: linear-gradient(to bottom, #3a4750 , #eeeeee);
-    color: #eeeeee;
+    background-image: linear-gradient(to bottom, #041c32 , ghostwhite);
+    color: ghostwhite;
     height:7em;
     display:grid;
     text-align:center;
@@ -545,7 +549,7 @@ footer section:nth-child(2){
 footer section:nth-child(4){
     grid-column:1/6;
     grid-row:2;
-    color: #303841;
+    color: #041c32;
 }
 /* <<<FOOTER */
 
