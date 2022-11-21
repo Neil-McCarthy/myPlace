@@ -51,12 +51,12 @@ let keyBindings = document.getElementById("keyBindings");
 //SCREEN LOCK INSTRUCTION>>>
 screenLock.onclick = function screenLocker(){
     if (screenLocked === false){
-        body.style.height = '100vh';
+        // body.style.height = '100vh';
         body.style.overflow = 'hidden';
         console.log(window.offsetTop);
         screenLocked = true;
     } else if (screenLocked === true){
-        body.style.height = '';
+        // body.style.height = '';
         body.style.overflow = '';
         screenLocked = false;
     }
