@@ -540,6 +540,7 @@ footer{
 }
 footer *{
     grid-row: 1/2;
+    padding-bottom: .5em;
 }
 #homePage footer{
     grid-row:5/6;
@@ -680,7 +681,7 @@ main canvas{
     } */
     #websitesPage main article{
         display: block;
-        height: 80em;
+        height: 85em;
     }
     #websitesPage main article section{
         margin-top: 2em;
@@ -783,6 +784,11 @@ main canvas{
         margin:1em auto;
     }
     /* <<<HOMEPAGE */
+    /* WEBSITES PAGE>>> */
+    #websitesPage main article{
+        height: 90em;
+    }
+    /* <<<WEBSITES PAGE */
     /* FOOTER>>> */
     footer{
         display: block;
