@@ -451,8 +451,7 @@ main p{
 #learningDisplay{
     width: 100%;
     height:auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: inline-block;
     transition:.5s;
 }
 #learningDisplay section{
@@ -691,10 +690,6 @@ main canvas{
     } */
     /* <<<WEBSITES PAGE */    
     /* LAEARNING PAGE>>> */
-    #learningDisplay{
-        height: auto;
-        display: block;
-    }
     #learning main span ul{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
