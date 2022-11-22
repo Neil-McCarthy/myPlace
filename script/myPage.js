@@ -292,7 +292,7 @@ main.addEventListener("mouseleave", function(){
 let scrollHeight;
 function scrollIn () {
     if (!window.matchMedia("(max-width: 900px)").matches){
-        scrollHeight = 900;
+        scrollHeight = 500;
         if (!window.matchMedia("(max-width: 1280px)").matches){
             scrollHeight = 1000;
         }
