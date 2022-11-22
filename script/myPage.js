@@ -289,31 +289,35 @@ main.addEventListener("mouseleave", function(){
     imageChanging = false;
 });
 
-
+let scrollHeight;
 function scrollIn () {
     if (!window.matchMedia("(max-width: 900px)").matches){
-        if (this.scrollY > 1000 && sectionCounter < 1){
+        scrollHeight = 900;
+        if (!window.matchMedia("(max-width: 1280px)").matches){
+            scrollHeight = 1000;
+        }
+        if (this.scrollY > scrollHeight && sectionCounter < 1){
             scrollCaller(mainSections[1])
         }
-        if (this.scrollY < 1000 && sectionCounter > 0){
+        if (this.scrollY < scrollHeight && sectionCounter > 0){
             scrollRemover(mainSections[1])
         }
-        if (this.scrollY > 1500 && sectionCounter < 2){
+        if (this.scrollY > scrollHeight + 500 && sectionCounter < 2){
             scrollCaller(mainSections[2])
         }
-        if (this.scrollY < 1500 && sectionCounter > 1){
+        if (this.scrollY < scrollHeight + 500 && sectionCounter > 1){
             scrollRemover(mainSections[2])
         }
-        if (this.scrollY > 2000 && sectionCounter < 3){
+        if (this.scrollY > scrollHeight + 1000 && sectionCounter < 3){
             scrollCaller(mainSections[3])
         }
-        if (this.scrollY < 2000 && sectionCounter > 2){
+        if (this.scrollY < scrollHeight + 1000 && sectionCounter > 2){
             scrollRemover(mainSections[3])
         }
-        if (this.scrollY > 2500 && sectionCounter < 4){
+        if (this.scrollY > scrollHeight + 1500 && sectionCounter < 4){
             scrollCaller(mainSections[4])
         }
-        if (this.scrollY < 2500 && sectionCounter > 3){
+        if (this.scrollY < scrollHeight + 1500 && sectionCounter > 3){
             scrollRemover(mainSections[4])
         }
     }
