@@ -52,27 +52,27 @@ header div{
     text-align: end;
     /* opacity:0; */
 }
-header div:hover{
+/* header div:hover{
     background-color: #ffcc33;
     opacity: 1;
-}
-header div:hover h1{
+} */
+header div h1{
     width:0%;
 }
-header div:hover h1 + h1{
+header div h1 + h1{
     width: 100%;
 }
 header div h1{
     font-size: 5em;
-    width: 100%;
+    /* width: 100%; */
     transition:.9s;
     font-family: 'Lobster';
     color:white;
     text-shadow: -1.2px -1.2px 0 #000, 1.2px -1.2px 0 #000, -1.2px 1.2px 0 #000, 1.2px 1.2px 0 #000;
 }
-header div h1 + h1{
+/* header div h1 + h1{
     width: 0%;
-}
+} */
 /* <<<HEADER */
 
 

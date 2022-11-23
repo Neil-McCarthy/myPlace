@@ -14,7 +14,7 @@ for (let clickedGame = 0;clickedGame < mainGmaesList.length;clickedGame++){
         gameChanger(clickedGame);
     };
 }
-let navGamesList = body.getElementsByTagName('nav')[0].getElementsByTagName('li')[12].getElementsByTagName('ul')[0].getElementsByTagName('a');
+let navGamesList = body.getElementsByTagName('nav')[0].getElementsByTagName('li')[11].getElementsByTagName('ul')[0].getElementsByTagName('a');
 for (let clickedGame = 0;clickedGame < navGamesList.length;clickedGame++){
     navGamesList[clickedGame].onclick = () => {
         gameChanger(clickedGame);
