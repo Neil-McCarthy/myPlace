@@ -604,7 +604,7 @@ main canvas{
         font-size: 85%;
     }
     #homePage main section{
-        max-height: 25em;
+        max-height: 22em;
     }
     #homePage main section:nth-child(2),#homePage main section:nth-child(4){
         grid-column: 2/6;
@@ -692,6 +692,8 @@ main canvas{
     #homePage main section{
         grid-column: 1/6!important;
         font-size: 110%;
+        margin: 0 !important;;
+        max-height: none;
     }
     /* <<<HOME PAGE */
     /* GAMESPAGE>>> */
@@ -876,6 +878,19 @@ main canvas{
         display: block;
     }
     /* <<<FOOTER */
+}
+@media only screen and (max-width: 400px) {
+    /* HEADER>>> */
+    header div{
+        width:70%;
+        left:12.5%;
+    }
+    /* <<<HEADER */
+    /* NAV>>> */
+    nav{
+        font-size: 89%;
+    }
+    /* <<<NAV */
 }
 /* <<<PHONES */
 /* <<<DIFFERENT SCREEN SIZES */
