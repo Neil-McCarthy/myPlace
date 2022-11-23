@@ -42,10 +42,18 @@ const learningData = [
     },
     {
         name: "C#",
-        overview: "Overview of C#",
-        level: "level of js",
-        implementation: "what you've done with C#",
-        futurePlans: "what you hope to do with C#"
+        overview: `I've only done a few chapters of a Udemy course with C# and while I'm still at the "hello world", stage of it, pretty sure it's going to be a big favourite.\nI've heard a lot of great things about C#
+        and it seems to one of the more diverse languages out there with the option to use it with, mobile and desktop apps, websites, games, and plenty of other areas (though those are my favourites). I htink it will be
+        a bit of time before I can really get stuck into this, it seems to be a long way of front-end web development, but out of all the languages I've seen it's the one I'm most excited to learn. It opens up a whole other
+        side to coding that I've been itching to get into and I'm very much looking forward to it.`,
+        level: `Simple answer, novice.\nI understand the logic of it, I'm getting used to it's syntax relative to other languages I'm more familiar with, and I'm slowly getting into the slightly deeper waters with it. But I am a
+        long way off mastery. I'll set up camp at the ground floor for the time being but I very much plan on progressing upwards in the not so distant future.`,
+        implementation: `System.Console.WriteLine("Hello World");`,
+        futurePlans: `A simple answer would just be that I want to know it completely and have the ability to use it for anything and everything I can. A more specific answer would be, I'm not really sure.\nThe difficulty with
+        answering this is that I'm yet to fully understand C# or what it can actually do at it's fullest. I'm hoping to be able to use it for websites and get better with back-end development, communicating with a database and
+        make a 'smart' website and not just a handsome one (although I'm still trying to learn how to do that too). Another thing I would very much like to get into through C# is game development. I've been playing games for
+        pretty much my entire life and I'd be lying if I said that I'd never thought, "I could make a better game than this". Outrageous ignorance of that aside, I'd really like to get into it and see what I could do.\nSo it
+        still depends on how much of the language I can learn but as for future plans, hopefully some time in the future it will be a lot.`
     },
     {
         name: "MySQL",
