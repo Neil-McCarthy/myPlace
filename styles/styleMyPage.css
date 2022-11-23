@@ -891,6 +891,12 @@ main canvas{
         font-size: 89%;
     }
     /* <<<NAV */
+
+    /* LEARNING PAGE>>> */
+    #learning main span li{
+        width: 50%;
+    }
+    /* <<<LEARNING PAGE */
 }
 /* <<<PHONES */
 /* <<<DIFFERENT SCREEN SIZES */
