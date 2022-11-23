@@ -25,14 +25,20 @@ const learningData = [
     },
     {
         name: "React",
-        overview: `The first time I started using React I thought, "What a useless waste of time?". I had already been creating and updating elements live through vanilla
-        JavaScript, I could write a function that could create multiple elements on the fly, so what did React have to offer? Then I shut up and slowly realised just how
-        amazing React actually is to use. Suddenly what used to take dozens of lines of code that was difficult to read, had become only a few lines that were simple to
-        understand. Has completely changed my approach to front-end development.\nAlthough I'm still little more than a novice, I'm looking forward to seeing what else 
-        React has to offer.`,
-        level: "level of react",
-        implementation: "what you've done with react",
-        futurePlans: "what you hope to do with react"
+        overview: `The first time I started using React I thought, "What a useless waste of time?". I had already been creating and updating elements live through vanillaJavaScript, I could write a function that could create
+        multiple elements on the fly, so what did React have to offer? Then I shut up and slowly realised just howamazing React actually is to use. Suddenly what used to take dozens of lines of code that was difficult to read,
+        had become only a few lines that were simple tounderstand. Has completely changed my approach to front-end development.\nAlthough I'm still little more than a novice, I'm looking forward to seeing what else React has
+        to offer.`,
+        level: `I'm not really sure I'm qualified to give a definitive answer on this. On the one hand I feel like there are some things in React that I do really well and I'm pretty happy with my projects, so it would be nice
+        to say that I'm great and leave it at that. Yet on the other hand I know that in probably only a matter of months or even weeks I'll look back at the work I'm doing today and my brain will melt as I try to understand
+        what I was thinking.\nI think a fair assessment would be that I'm still a novice but a pretty decent novice. There's still a lot that I don't understand or a lot that I'm doing wrong but what I get right isn't too bad.`,
+        implementation: `Most of my dealings with React so far have all been quite similar, a website that can display a number of different options depending on users input using useState. I've yet to really sink my teeth
+        into a project in a big way or really tackle some convoluted idea.\nBut what I have done has really helped my understanding of how React is used. Best practice when updating state, when to (and when Not to) create a
+        new component, and when to fall back on vanilla JavaScript have all been prominent lessons in each of the sites I've made with React.\nI plan on diving into some more complicated projects in the near future and will
+        be happy to update this once I have, but until then this will have to do.`,
+        futurePlans: `Hopefully a lot!\nI'm becoming much more confident with React and I hope to find work in a team soon where I can learn a great deal more of it. It's an excellent framework and one I'd like to use in
+        standard practice once I'm skilled enough.\nAs for specific projects, I have two that I'm looking forawrd to getting back to and finishing, a webpage builder and a recipe page, but I have no doubt another idea
+        will pop into my head before finishing either!`
     },
     {
         name: "C#",
