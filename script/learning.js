@@ -57,10 +57,13 @@ const learningData = [
     },
     {
         name: "MySQL",
-        overview: "Overview of mySQL",
-        level: "level of mySQL",
-        implementation: "what you've done with mySQL",
-        futurePlans: "what you hope to do with mySQL"
+        overview: `I first learned MySQL in college a number of years ago and found it to be a very functional language. It never really progressed into anything overly complex but all the basics were thoroughly covered.\nIn
+        terms of application it seems ideal for a project that will have a lot of stored information (obviously) that an end-user might want to quickly access. Also excellent for storing user account information such as
+        usernames, passwords, etc.`,
+        level: `I would describe myself as competent in this langauge, though it's been a while since I've used it. I understand it's structure and how it functions but I've yet to take it to it's next level.`,
+        implementation: "Predominantly simple data retrieval but I've also used it in verifying a users account or in the creation of a new account.",
+        futurePlans: `For the immediate future I have no intentions to pursue this language further beyond revision and further learning. Once I have a back-end language that I'm competent enough in to use I plan to use MySQL
+        and databases a lot more as it's security and function have few equals. Once I'm able to use it I can see many more projects that would rely on a database opening up to me.`
     }
 ]
 
