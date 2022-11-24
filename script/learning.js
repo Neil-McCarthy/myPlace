@@ -12,6 +12,10 @@ for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;na
 }
 // <<<NAV SET LOCAL STORAGE
 
+//USE LOCAL STORAGE>>>
+contentChange(localStorage.getItem("Learning"));
+// <<<USE LOCAL STORAGE
+
 const learningData = [
     {
         name: "JavaScript",
@@ -82,15 +86,19 @@ function delay() {
     return new Promise(resolve => setTimeout(resolve, 750));
 }
 for (let singleIcon = 0;singleIcon < languagesIconList.length;singleIcon++) {
-    languagesIconList[singleIcon].onclick = async () => {
-        document.getElementById("learningDisplay").style.opacity = 0;
-        delay().then(() => {
-        learningDisplaySections[0].getElementsByTagName("h1")[0].innerHTML = learningData[singleIcon].name;
-        learningDisplaySections[0].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].overview;
-        learningDisplaySections[1].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].level;
-        learningDisplaySections[2].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].implementation;
-        learningDisplaySections[3].getElementsByTagName("p")[0].innerHTML = learningData[singleIcon].futurePlans;
-        document.getElementById("learningDisplay").style.opacity = 1;
-        });
+    languagesIconList[singleIcon].onclick = () => {
+        contentChange(singleIcon);
     };
+}
+
+async function contentChange(selectedLanguage) {
+    document.getElementById("learningDisplay").style.opacity = 0;
+    delay().then(() => {
+    learningDisplaySections[0].getElementsByTagName("h1")[0].innerHTML = learningData[selectedLanguage].name;
+    learningDisplaySections[0].getElementsByTagName("p")[0].innerHTML = learningData[selectedLanguage].overview;
+    learningDisplaySections[1].getElementsByTagName("p")[0].innerHTML = learningData[selectedLanguage].level;
+    learningDisplaySections[2].getElementsByTagName("p")[0].innerHTML = learningData[selectedLanguage].implementation;
+    learningDisplaySections[3].getElementsByTagName("p")[0].innerHTML = learningData[selectedLanguage].futurePlans;
+    document.getElementById("learningDisplay").style.opacity = 1;
+    });
 }
