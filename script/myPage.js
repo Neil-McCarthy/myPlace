@@ -161,6 +161,8 @@ aside = document.querySelector("aside");
 mainSections = main.getElementsByTagName("section");
 mainImages = main.getElementsByTagName("img");
 
+
+// NAV SET LOCAL STORAGE>>>
 let navOptionsList = document.querySelector("nav").getElementsByTagName("ul")[0];
 for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;navListSpecific++){
     for (let navSubListSpecific = 0;navSubListSpecific < navOptionsList.children[navListSpecific].getElementsByTagName("li").length;navSubListSpecific++) {
@@ -169,6 +171,7 @@ for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;na
         }
     }
 }
+// <<<NAV SET LOCAL STORAGE
 
 
 function scrollCaller(sectionNo){

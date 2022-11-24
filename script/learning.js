@@ -1,6 +1,17 @@
 const languagesIconList = document.getElementsByTagName("main")[0].getElementsByTagName("span")[0].getElementsByTagName("img");
 const learningDisplaySections = document.getElementById("learningDisplay").getElementsByTagName("section");
 
+// NAV SET LOCAL STORAGE>>>
+let navOptionsList = document.querySelector("nav").getElementsByTagName("ul")[0];
+for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;navListSpecific++){
+    for (let navSubListSpecific = 0;navSubListSpecific < navOptionsList.children[navListSpecific].getElementsByTagName("li").length;navSubListSpecific++) {
+        navOptionsList.children[navListSpecific].getElementsByTagName("li")[navSubListSpecific].onclick = () => {
+            localStorage.setItem(navOptionsList.children[navListSpecific].getElementsByTagName("a")[0].innerHTML,navSubListSpecific);
+        }
+    }
+}
+// <<<NAV SET LOCAL STORAGE
+
 const learningData = [
     {
         name: "JavaScript",

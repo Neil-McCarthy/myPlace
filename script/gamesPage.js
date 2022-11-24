@@ -7,6 +7,18 @@ let playImage = main.getElementsByTagName("img")[0];
 //<<GENERAL
 
 
+// NAV SET LOCAL STORAGE>>>
+let navOptionsList = document.querySelector("nav").getElementsByTagName("ul")[0];
+for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;navListSpecific++){
+    for (let navSubListSpecific = 0;navSubListSpecific < navOptionsList.children[navListSpecific].getElementsByTagName("li").length;navSubListSpecific++) {
+        navOptionsList.children[navListSpecific].getElementsByTagName("li")[navSubListSpecific].onclick = () => {
+            localStorage.setItem(navOptionsList.children[navListSpecific].getElementsByTagName("a")[0].innerHTML,navSubListSpecific);
+        }
+    }
+}
+// <<<NAV SET LOCAL STORAGE
+
+
 //GAME SELECTOR NAV>>>
 let mainGmaesList = main.getElementsByTagName('ul')[0].getElementsByTagName('button');
 for (let clickedGame = 0;clickedGame < mainGmaesList.length;clickedGame++){
