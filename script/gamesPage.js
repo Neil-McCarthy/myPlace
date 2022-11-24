@@ -34,8 +34,12 @@ for (let clickedGame = 0;clickedGame < navGamesList.length;clickedGame++){
     };
 }
 function gameChanger(game) {
+    paused = false;
+    pauseDisplay = false;
+    playImage.style.zIndex = 0;
     gameRestart(game);
     localStorage.setItem('game',game);
+    localStorage.setItem('Games',game);
 }
 //<<<GAME SELECTOR NAV
 
@@ -967,6 +971,7 @@ gameChanger(localStorage.getItem("Games"));
 gamePlayer = function(){
     if (paused == false){
         if (pauseDisplay == false){
+            console.log("here");
             paused = true;
             pauseDisplay = true;
         }
