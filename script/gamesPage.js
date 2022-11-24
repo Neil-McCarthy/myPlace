@@ -19,6 +19,7 @@ for (let navListSpecific = 0;navListSpecific < navOptionsList.children.length;na
 // <<<NAV SET LOCAL STORAGE
 
 
+
 //GAME SELECTOR NAV>>>
 let mainGmaesList = main.getElementsByTagName('ul')[0].getElementsByTagName('button');
 for (let clickedGame = 0;clickedGame < mainGmaesList.length;clickedGame++){
@@ -956,6 +957,11 @@ function platformCollision(){
     }
 
 }
+
+
+//USE LOCAL STORAGE>>>
+gameChanger(localStorage.getItem("Games"));
+// <<<USELOCAL STORAGE
 
 
 gamePlayer = function(){
