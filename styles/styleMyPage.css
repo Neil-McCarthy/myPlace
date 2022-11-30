@@ -614,8 +614,18 @@ main canvas{
         grid-column: 1/5;
     }
     #homePage main section img{
-        margin: 2em auto;
-        width:80%;
+        margin: 1em auto;
+        width:65%;
+        /* grid-row: 2/3; */
+    }
+    .verticalLong{
+        /* grid-row: 1/3!important; */
+        margin-top: .5em;
+        width: 35%!important;
+    }
+    .horizontalLong{
+        grid-row: 2/3!important;
+        width: 80%!important;
     }
     /* <<<HOME PAGE */
     /* GAMESPAGE>>> */
@@ -687,6 +697,10 @@ main canvas{
         font-size: 110%;
         margin: 0 !important;;
         max-height: none;
+    }
+    #homePage main section img{
+        margin: 1em auto;
+        width:75%;
     }
     /* <<<HOME PAGE */
     /* GAMESPAGE>>> */
@@ -801,7 +815,7 @@ main canvas{
         height: auto;
     }
     #homePage main section img{
-        grid-row: 3/4;
+        grid-row: 3/4!important;
         margin:1em auto;
     }
     /* <<<HOMEPAGE */
